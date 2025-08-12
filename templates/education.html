@@ -1,0 +1,807 @@
+{% extends 'base.html' %}
+
+{% block title %}Education — Pruthviraj Shitole{% endblock %}
+
+{% block head %}
+  <style>
+    .hero-section {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #0a0a0a 50%, #1a1a1a 75%, #0a0a0a 100%);
+      color: #ffffff;
+      padding: 100px 0;
+      text-align: center;
+      margin: -40px -32px 50px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 150, 0, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 255, 200, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(200, 0, 255, 0.2) 0%, transparent 50%);
+      opacity: 1;
+      animation: gradientMove 12s ease-in-out infinite;
+    }
+    
+    @keyframes gradientMove {
+      0%, 100% { 
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      25% { 
+        transform: translate(-20px, -20px) scale(1.1);
+        opacity: 0.8;
+      }
+      50% { 
+        transform: translate(20px, 20px) scale(0.9);
+        opacity: 1;
+      }
+      75% { 
+        transform: translate(-15px, 15px) scale(1.05);
+        opacity: 0.9;
+      }
+    }
+    
+    /* Academic grid pattern */
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(90deg, rgba(255, 150, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(rgba(255, 150, 0, 0.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+      animation: gridMove 18s linear infinite;
+    }
+    
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(80px, 80px); }
+    }
+    
+    /* Floating academic symbols */
+    .hero-section .academic-symbol {
+      position: absolute;
+      color: rgba(255, 150, 0, 0.9);
+      font-size: 2rem;
+      animation: floatAcademic 7s ease-in-out infinite;
+      text-shadow: 0 0 15px rgba(255, 150, 0, 0.6);
+    }
+    
+    .hero-section .academic-symbol:nth-child(1) {
+      content: '📚';
+      top: 20%;
+      left: 20%;
+      animation-delay: 0s;
+      animation-duration: 9s;
+    }
+    
+    .hero-section .academic-symbol:nth-child(2) {
+      content: '🎓';
+      top: 60%;
+      left: 80%;
+      animation-delay: 2s;
+      animation-duration: 8s;
+    }
+    
+    .hero-section .academic-symbol:nth-child(3) {
+      content: '📖';
+      top: 75%;
+      left: 25%;
+      animation-delay: 4s;
+      animation-duration: 10s;
+    }
+    
+    .hero-section .academic-symbol:nth-child(4) {
+      content: '🔬';
+      top: 35%;
+      left: 75%;
+      animation-delay: 1s;
+      animation-duration: 7s;
+    }
+    
+    .hero-section .academic-symbol:nth-child(5) {
+      content: '💡';
+      top: 55%;
+      left: 45%;
+      animation-delay: 3s;
+      animation-duration: 8.5s;
+    }
+    
+    @keyframes floatAcademic {
+      0%, 100% { 
+        transform: translateY(0px) translateX(0px) rotate(0deg);
+        opacity: 0.9;
+      }
+      25% { 
+        transform: translateY(-25px) translateX(12px) rotate(8deg);
+        opacity: 1;
+      }
+      50% { 
+        transform: translateY(-45px) translateX(-10px) rotate(-5deg);
+        opacity: 0.8;
+      }
+      75% { 
+        transform: translateY(-20px) translateX(18px) rotate(3deg);
+        opacity: 1;
+      }
+    }
+    
+    /* Floating knowledge orbs */
+    .hero-section .knowledge-orb {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 150, 0, 0.2) 0%, transparent 70%);
+      animation: moveKnowledge 15s linear infinite;
+      box-shadow: 0 0 25px rgba(255, 150, 0, 0.4);
+    }
+    
+    .hero-section .knowledge-orb:nth-child(6) {
+      width: 100px;
+      height: 100px;
+      top: -50px;
+      left: -50px;
+      animation-delay: 0s;
+      animation-duration: 20s;
+    }
+    
+    .hero-section .knowledge-orb:nth-child(7) {
+      width: 70px;
+      height: 70px;
+      top: 50%;
+      right: -35px;
+      animation-delay: 4s;
+      animation-duration: 25s;
+    }
+    
+    .hero-section .knowledge-orb:nth-child(8) {
+      width: 50px;
+      height: 50px;
+      bottom: -25px;
+      left: 35%;
+      animation-delay: 8s;
+      animation-duration: 18s;
+    }
+    
+    @keyframes moveKnowledge {
+      0% { 
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.6;
+      }
+      25% { 
+        transform: translate(100px, 60px) rotate(90deg);
+        opacity: 0.9;
+      }
+      50% { 
+        transform: translate(60px, 100px) rotate(180deg);
+        opacity: 0.7;
+      }
+      75% { 
+        transform: translate(-60px, 80px) rotate(270deg);
+        opacity: 1;
+      }
+      100% { 
+        transform: translate(0, 0) rotate(360deg);
+        opacity: 0.6;
+      }
+    }
+    
+    /* Learning waves */
+    .hero-section .learning-wave {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255, 150, 0, 0.7), transparent);
+      animation: learningWave 6s ease-in-out infinite;
+      box-shadow: 0 0 20px rgba(255, 150, 0, 0.5);
+    }
+    
+    .hero-section .learning-wave:nth-child(9) {
+      width: 280px;
+      top: 30%;
+      left: -280px;
+      animation-delay: 0s;
+    }
+    
+    .hero-section .learning-wave:nth-child(10) {
+      width: 220px;
+      top: 70%;
+      right: -220px;
+      animation-delay: 3s;
+    }
+    
+    @keyframes learningWave {
+      0%, 100% { 
+        transform: translateX(0);
+        opacity: 0;
+      }
+      50% { 
+        transform: translateX(560px);
+        opacity: 1;
+      }
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0 0 16px;
+      text-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41;
+      font-family: 'Orbitron', monospace;
+      animation: glitch 2s infinite;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+      color: #00ff88;
+      font-family: 'Orbitron', monospace;
+    }
+    
+    .education-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .education-timeline {
+      position: relative;
+      padding: 40px 0;
+    }
+    
+    .education-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #10b981, #34d399, #10b981);
+      transform: translateX(-50%);
+      border-radius: 2px;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+      animation: timelineGlow 3s ease-in-out infinite;
+    }
+    
+    @keyframes timelineGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.5); }
+      50% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.8); }
+    }
+    
+    .education-item {
+      position: relative;
+      margin-bottom: 60px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    
+    .education-item:nth-child(odd) {
+      padding-right: 50%;
+      text-align: right;
+    }
+    
+    .education-item:nth-child(even) {
+      padding-left: 50%;
+      text-align: left;
+    }
+    
+    .education-item:nth-child(odd) .education-dot {
+      right: -12px;
+    }
+    
+    .education-item:nth-child(even) .education-dot {
+      left: -12px;
+    }
+    
+    .education-dot {
+      width: 16px;
+      height: 16px;
+      background: linear-gradient(135deg, #10b981, #34d399);
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes dotPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    
+    .education-card {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 8px 32px rgba(16, 185, 129, 0.15), inset 0 0 0 1px rgba(16, 185, 129, 0.2);
+      border: 2px solid #10b981;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .education-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #10b981, #34d399, #10b981);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    
+    .education-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(16, 185, 129, 0.25), 0 0 30px rgba(16, 185, 129, 0.2);
+      border-color: #34d399;
+    }
+    
+    /* Hacker scan effect */
+    .education-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0,255,65,0.1), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .education-card:hover::after {
+      left: 100%;
+    }
+    
+    .education-header {
+      margin-bottom: 16px;
+    }
+    
+    .education-icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+      display: block;
+      animation: iconFloat 3s ease-in-out infinite;
+    }
+    
+    .hacker-education-icon {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    
+    .hacker-education-icon .circuit-pattern {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="circuit" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M0 15 L30 15 M15 0 L15 30 M7.5 7.5 L22.5 22.5 M22.5 7.5 L7.5 22.5" stroke="rgba(0,255,65,0.3)" stroke-width="1" fill="none"/><circle cx="7.5" cy="7.5" r="1" fill="rgba(0,255,65,0.4)"/><circle cx="22.5" cy="22.5" r="1" fill="rgba(0,255,65,0.4)"/><circle cx="22.5" cy="7.5" r="1" fill="rgba(0,255,65,0.4)"/><circle cx="7.5" cy="22.5" r="1" fill="rgba(0,255,65,0.4)"/></pattern></defs><rect width="100" height="100" fill="url(%23circuit)"/></svg>');
+      opacity: 0.6;
+      animation: circuitRotate 20s linear infinite;
+      z-index: -1;
+    }
+    
+    @keyframes iconFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-3px); }
+    }
+    
+    @keyframes circuitRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .skills-section {
+      background: linear-gradient(135deg, #1a1a1a 0%, #0f0f23 100%);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 32px rgba(0,255,65,0.1), inset 0 0 0 1px rgba(0,255,65,0.2);
+      border: 1px solid #00ff41;
+      margin-top: 40px;
+    }
+    
+    .skills-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #00ff41;
+      margin: 0 0 30px;
+      text-align: center;
+      position: relative;
+      font-family: 'Orbitron', monospace;
+      text-shadow: 0 0 15px #00ff41;
+    }
+    
+    .skills-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #00ff41, #00ff88, #00ff41);
+      border-radius: 2px;
+      box-shadow: 0 0 10px #00ff41;
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    
+    .skill-item {
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a1a 100%);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #00ff41;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(0,255,65,0.1);
+    }
+    
+    .skill-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,255,65,0.3), 0 0 20px rgba(0,255,65,0.2);
+      border-color: #00ff88;
+    }
+    
+    .skill-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      display: block;
+      animation: skillIconFloat 3s ease-in-out infinite;
+    }
+    
+    @keyframes skillIconFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-3px); }
+    }
+    
+    .skill-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #00ff88;
+      font-family: 'Orbitron', monospace;
+    }
+    
+    .education-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #10b981;
+      margin: 0 0 8px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      text-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+    }
+    
+    .education-institution {
+      font-size: 1.1rem;
+      color: #34d399;
+      margin-bottom: 12px;
+      font-weight: 600;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .education-meta {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    
+    .year, .score {
+      background: linear-gradient(135deg, #1e293b, #334155);
+      color: #34d399;
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid #10b981;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .education-details {
+      color: #e2e8f0;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .education-highlights {
+      background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 16px;
+      border: 2px solid #00ff41;
+    }
+    
+    .highlights-title {
+      color: #10b981;
+      font-weight: 600;
+      margin-bottom: 12px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .highlights-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .highlights-list li {
+      color: #cbd5e1;
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .highlights-list li::before {
+      content: '•';
+      color: #10b981;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      text-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+    }
+    
+    .skills-section {
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      border-radius: 16px;
+      padding: 32px;
+      margin: 40px 0;
+      text-align: center;
+    }
+    
+    .skills-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 24px;
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .skill-item {
+      background: white;
+      border-radius: 12px;
+      padding: 16px 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: all 0.3s ease;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .skill-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    
+    .skill-icon {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+    
+    .skill-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #475569;
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .education-item:nth-child(1) { animation-delay: 0.1s; }
+    .education-item:nth-child(2) { animation-delay: 0.3s; }
+    .education-item:nth-child(3) { animation-delay: 0.5s; }
+    
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2rem; }
+      .hero-subtitle { font-size: 1rem; }
+      .education-timeline::before { left: 20px; }
+      .education-item:nth-child(odd),
+      .education-item:nth-child(even) {
+        padding-left: 60px;
+        padding-right: 0;
+        text-align: left;
+      }
+      .education-item:nth-child(odd) .education-dot,
+      .education-item:nth-child(even) .education-dot {
+        left: 8px;
+        right: auto;
+      }
+      .skills-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
+    }
+    
+    /* Missing animations */
+    @keyframes shimmer {
+      0%, 100% { transform: translateX(-100%); }
+      50% { transform: translateX(100%); }
+    }
+    
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="hero-section">
+    <!-- Animated background elements -->
+    <div class="academic-symbol">📚</div>
+    <div class="academic-symbol">🎓</div>
+    <div class="academic-symbol">📖</div>
+    <div class="academic-symbol">🔬</div>
+    <div class="academic-symbol">💡</div>
+    <div class="knowledge-orb"></div>
+    <div class="knowledge-orb"></div>
+    <div class="knowledge-orb"></div>
+    <div class="learning-wave"></div>
+    <div class="learning-wave"></div>
+    
+    <div class="hero-content">
+      <h1 class="hero-title">Education Journey</h1>
+      <p class="hero-subtitle">Academic achievements and continuous learning in the field of Artificial Intelligence, Machine Learning, and Data Science</p>
+    </div>
+  </div>
+
+  <div class="education-container">
+    <div class="education-timeline">
+      <div class="education-item">
+        <div class="education-dot"></div>
+        <div class="education-card">
+          <div class="education-header">
+            <span class="education-icon">🎓</span>
+            <div class="education-title">B.Tech in Artificial Intelligence & Machine Learning</div>
+            <div class="education-institution">Sanjay Ghodawat University, Kolhapur</div>
+            <div class="education-meta">
+              <span class="year">2021 - 2025</span>
+              <span class="score">CGPA: 7.23/10</span>
+            </div>
+          </div>
+          <div class="education-details">
+            Comprehensive program covering core AI/ML concepts, data structures, algorithms, and practical applications in modern technology.
+          </div>
+          <div class="education-highlights">
+            <div class="highlights-title">Key Focus Areas:</div>
+            <ul class="highlights-list">
+              <li>Machine Learning Algorithms & Neural Networks</li>
+              <li>Data Mining & Statistical Analysis</li>
+              <li>Python Programming & Deep Learning</li>
+              <li>Computer Vision & Natural Language Processing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-dot"></div>
+        <div class="education-card">
+          <div class="education-header">
+            <span class="education-icon">🔬</span>
+            <div class="education-title">HSC - Science</div>
+            <div class="education-institution">Alva's Pre-University College, Moodbidri</div>
+            <div class="education-meta">
+              <span class="year">2019 - 2021</span>
+              <span class="score">Percentage: 97.33%</span>
+            </div>
+          </div>
+          <div class="education-details">
+            Specialized in Physics, Chemistry, and Mathematics with a strong foundation in scientific principles and analytical thinking.
+          </div>
+          <div class="education-highlights">
+            <div class="highlights-title">Subjects:</div>
+            <ul class="highlights-list">
+              <li>Physics, Chemistry, Mathematics</li>
+              <li>English & Kannada Languages</li>
+              <li>Computer Science Fundamentals</li>
+              <li>Research & Laboratory Skills</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-dot"></div>
+        <div class="education-card">
+          <div class="education-header">
+            <span class="education-icon">📚</span>
+            <div class="education-title">SSC</div>
+            <div class="education-institution">Alva's Kannada Medium High School, Moodbidri</div>
+            <div class="education-meta">
+              <span class="year">2018 - 2019</span>
+              <span class="score">Percentage: 96.48%</span>
+            </div>
+          </div>
+          <div class="education-details">
+            Strong academic foundation with excellence in core subjects, developing critical thinking and problem-solving abilities.
+          </div>
+          <div class="education-highlights">
+            <div class="highlights-title">Foundation Skills:</div>
+            <ul class="highlights-list">
+              <li>Mathematics & Science Excellence</li>
+              <li>Language Proficiency (Kannada, English, Hindi)</li>
+              <li>Social Studies & Environmental Science</li>
+              <li>Computer Applications & Basic Programming</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-section">
+      <h2 class="skills-title">Technical Skills & Competencies</h2>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <span class="skill-icon">🐍</span>
+          <div class="skill-name">Python</div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-icon">🤖</span>
+          <div class="skill-name">Machine Learning</div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-icon">📊</span>
+          <div class="skill-name">Data Analysis</div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-icon">🗄️</span>
+          <div class="skill-name">SQL</div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-icon">📈</span>
+          <div class="skill-name">Statistics</div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-icon">🔍</span>
+          <div class="skill-name">Deep Learning</div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-icon">💻</span>
+          <div class="skill-name">Programming</div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-icon">📱</span>
+          <div class="skill-name">Web Development</div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

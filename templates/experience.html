@@ -1,0 +1,757 @@
+{% extends 'base.html' %}
+
+{% block title %}Experience — Pruthviraj Shitole{% endblock %}
+
+{% block head %}
+  <style>
+    .hero-section {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #0a0a0a 50%, #1a1a1a 75%, #0a0a0a 100%);
+      color: #ffffff;
+      padding: 100px 0;
+      text-align: center;
+      margin: -40px -32px 50px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(0, 200, 150, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(150, 200, 0, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(200, 150, 0, 0.2) 0%, transparent 50%);
+      opacity: 1;
+      animation: gradientMove 11s ease-in-out infinite;
+    }
+    
+    @keyframes gradientMove {
+      0%, 100% { 
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      25% { 
+        transform: translate(-22px, -22px) scale(1.12);
+        opacity: 0.8;
+      }
+      50% { 
+        transform: translate(22px, 22px) scale(0.92);
+        opacity: 1;
+      }
+      75% { 
+        transform: translate(-18px, 18px) scale(1.08);
+        opacity: 0.9;
+      }
+    }
+    
+    /* Professional grid pattern */
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(90deg, rgba(0, 200, 150, 0.03) 1px, transparent 1px),
+        linear-gradient(rgba(0, 200, 150, 0.03) 1px, transparent 1px);
+      background-size: 70px 70px;
+      animation: gridMove 16s linear infinite;
+    }
+    
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(70px, 70px); }
+    }
+    
+    /* Floating skill icons */
+    .hero-section .skill-icon {
+      position: absolute;
+      color: rgba(0, 200, 150, 0.9);
+      font-size: 1.8rem;
+      animation: floatSkill 6s ease-in-out infinite;
+      text-shadow: 0 0 12px rgba(0, 200, 150, 0.6);
+    }
+    
+    .hero-section .skill-icon:nth-child(1) {
+      content: '💼';
+      top: 25%;
+      left: 18%;
+      animation-delay: 0s;
+      animation-duration: 8s;
+    }
+    
+    .hero-section .skill-icon:nth-child(2) {
+      content: '🚀';
+      top: 65%;
+      left: 82%;
+      animation-delay: 2s;
+      animation-duration: 7s;
+    }
+    
+    .hero-section .skill-icon:nth-child(3) {
+      content: '⚡';
+      top: 75%;
+      left: 22%;
+      animation-delay: 4s;
+      animation-duration: 9s;
+    }
+    
+    .hero-section .skill-icon:nth-child(4) {
+      content: '🎯';
+      top: 35%;
+      left: 78%;
+      animation-delay: 1s;
+      animation-duration: 6s;
+    }
+    
+    .hero-section .skill-icon:nth-child(5) {
+      content: '🔧';
+      top: 55%;
+      left: 42%;
+      animation-delay: 3s;
+      animation-duration: 8.5s;
+    }
+    
+    @keyframes floatSkill {
+      0%, 100% { 
+        transform: translateY(0px) translateX(0px) rotate(0deg);
+        opacity: 0.9;
+      }
+      25% { 
+        transform: translateY(-22px) translateX(11px) rotate(6deg);
+        opacity: 1;
+      }
+      50% { 
+        transform: translateY(-38px) translateX(-9px) rotate(-4deg);
+        opacity: 0.8;
+      }
+      75% { 
+        transform: translateY(-18px) translateX(16px) rotate(3deg);
+        opacity: 1;
+      }
+    }
+    
+    /* Floating career orbs */
+    .hero-section .career-orb {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 200, 150, 0.2) 0%, transparent 70%);
+      animation: moveCareer 14s linear infinite;
+      box-shadow: 0 0 20px rgba(0, 200, 150, 0.4);
+    }
+    
+    .hero-section .career-orb:nth-child(6) {
+      width: 90px;
+      height: 90px;
+      top: -45px;
+      left: -45px;
+      animation-delay: 0s;
+      animation-duration: 18s;
+    }
+    
+    .hero-section .career-orb:nth-child(7) {
+      width: 65px;
+      height: 65px;
+      top: 50%;
+      right: -32px;
+      animation-delay: 3s;
+      animation-duration: 22s;
+    }
+    
+    .hero-section .career-orb:nth-child(8) {
+      width: 45px;
+      height: 45px;
+      bottom: -22px;
+      left: 38%;
+      animation-delay: 7s;
+      animation-duration: 16s;
+    }
+    
+    @keyframes moveCareer {
+      0% { 
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.6;
+      }
+      25% { 
+        transform: translate(90px, 55px) rotate(90deg);
+        opacity: 0.9;
+      }
+      50% { 
+        transform: translate(55px, 90px) rotate(180deg);
+        opacity: 0.7;
+      }
+      75% { 
+        transform: translate(-55px, 75px) rotate(270deg);
+        opacity: 1;
+      }
+      100% { 
+        transform: translate(0, 0) rotate(360deg);
+        opacity: 0.6;
+      }
+    }
+    
+    /* Career progress lines */
+    .hero-section .career-line {
+      position: absolute;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 200, 150, 0.7), transparent);
+      animation: careerLine 5.5s ease-in-out infinite;
+      box-shadow: 0 0 18px rgba(0, 200, 150, 0.5);
+    }
+    
+    .hero-section .career-line:nth-child(9) {
+      width: 260px;
+      top: 30%;
+      left: -260px;
+      animation-delay: 0s;
+    }
+    
+    .hero-section .career-line:nth-child(10) {
+      width: 240px;
+      top: 70%;
+      right: -240px;
+      animation-delay: 2.5s;
+    }
+    
+    @keyframes careerLine {
+      0%, 100% { 
+        transform: translateX(0);
+        opacity: 0;
+      }
+      50% { 
+        transform: translateX(520px);
+        opacity: 1;
+      }
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0 0 16px;
+      text-shadow: 0 0 25px #00ff41, 0 0 50px #00ff41;
+      font-family: 'Orbitron', monospace;
+      animation: glitch 2s infinite;
+      position: relative;
+    }
+    
+    .hero-title::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+      color: #00ff88;
+      font-family: 'Orbitron', monospace;
+    }
+    
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section {
+      margin-bottom: 60px;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #10b981;
+      margin: 0 0 32px;
+      text-align: center;
+      position: relative;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      text-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #10b981, #34d399, #10b981);
+      border-radius: 2px;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+    }
+    
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    
+    .skill-category {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15), inset 0 0 0 1px rgba(16, 185, 129, 0.2);
+      border: 2px solid #10b981;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .skill-category::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #10b981, #34d399, #10b981);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    
+    .skill-category:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.25), 0 0 20px rgba(16, 185, 129, 0.2);
+      border-color: #34d399;
+    }
+    
+    /* Hacker scan effect */
+    .skill-category::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0,255,65,0.2), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .skill-category:hover::after {
+      left: 100%;
+    }
+    
+    .skill-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    
+    .skill-icon {
+      font-size: 2rem;
+      animation: iconPulse 2s ease-in-out infinite;
+    }
+    
+    .skill-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #10b981;
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      text-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+    }
+    
+    .skill-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .skill-list li {
+      color: #d1fae5;
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .skill-list li::before {
+      content: '•';
+      color: #10b981;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      text-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+    }
+    
+    /* Experience Section */
+    .experience-timeline {
+      position: relative;
+      padding: 40px 0;
+    }
+    
+    .experience-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #10b981, #34d399, #10b981);
+      transform: translateX(-50%);
+      border-radius: 2px;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+      animation: timelineGlow 3s ease-in-out infinite;
+    }
+    
+    .experience-item {
+      position: relative;
+      margin-bottom: 40px;
+    }
+    
+    .experience-item:nth-child(odd) {
+      padding-right: 50%;
+      text-align: right;
+    }
+    
+    .experience-item:nth-child(even) {
+      padding-left: 50%;
+      text-align: left;
+    }
+    
+    .experience-item:nth-child(odd) .experience-dot {
+      right: -12px;
+    }
+    
+    .experience-item:nth-child(even) .experience-dot {
+      left: -12px;
+    }
+    
+    .experience-dot {
+      width: 16px;
+      height: 16px;
+      background: linear-gradient(135deg, #10b981, #34d399);
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+    
+    .experience-card {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 8px 32px rgba(16, 185, 129, 0.15), inset 0 0 0 1px rgba(16, 185, 129, 0.2);
+      border: 2px solid #10b981;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      margin-left: 60px;
+    }
+    
+    .experience-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #10b981, #34d399, #10b981);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    
+    .experience-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(16, 185, 129, 0.25), 0 0 30px rgba(16, 185, 129, 0.2);
+      border-color: #34d399;
+    }
+    
+    /* Hacker scan effect */
+    .experience-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0,255,65,0.2), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .experience-card:hover::after {
+      left: 100%;
+    }
+    
+    .experience-header {
+      margin-bottom: 20px;
+    }
+    
+    .experience-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #10b981;
+      margin: 0 0 8px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      text-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+    }
+    
+    .experience-company {
+      font-size: 1.1rem;
+      color: #34d399;
+      margin-bottom: 12px;
+      font-weight: 600;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .experience-meta {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    
+    .duration, .location {
+      background: linear-gradient(135deg, #1e293b, #334155);
+      color: #34d399;
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid #10b981;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .experience-description {
+      color: #e2e8f0;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .experience-highlights {
+      background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 16px;
+      border: 2px solid #00ff41;
+    }
+    
+    .highlights-title {
+      color: #10b981;
+      font-weight: 600;
+      margin-bottom: 12px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .highlights-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .highlights-list li {
+      color: #cbd5e1;
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .highlights-list li::before {
+      content: '•';
+      color: #10b981;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      text-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .experience-item:nth-child(1) { animation-delay: 0.1s; }
+    
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2rem; }
+      .hero-subtitle { font-size: 1rem; }
+      .experience-timeline::before { left: 20px; }
+      .experience-item:nth-child(odd),
+      .experience-item:nth-child(even) {
+        padding-left: 60px;
+        padding-right: 0;
+        text-align: left;
+      }
+      .experience-item:nth-child(odd) .experience-dot,
+      .experience-item:nth-child(even) .experience-dot {
+        left: 8px;
+        right: auto;
+      }
+      .skills-grid { grid-template-columns: 1fr; }
+      .section-title { font-size: 1.5rem; }
+    }
+    
+    /* Missing animations */
+    @keyframes shimmer {
+      0%, 100% { transform: translateX(-100%); }
+      50% { transform: translateX(100%); }
+    }
+    
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+    }
+    
+
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes timelineGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(0,255,65,0.5); }
+      50% { box-shadow: 0 0 30px rgba(0,255,65,0.8); }
+    }
+    
+    @keyframes dotPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="hero-section">
+    <!-- Animated background elements -->
+    <div class="skill-icon">💼</div>
+    <div class="skill-icon">🚀</div>
+    <div class="skill-icon">⚡</div>
+    <div class="skill-icon">🎯</div>
+    <div class="skill-icon">🔧</div>
+    <div class="career-orb"></div>
+    <div class="career-orb"></div>
+    <div class="career-orb"></div>
+    <div class="career-line"></div>
+    <div class="career-line"></div>
+    
+    <div class="hero-content">
+      <h1 class="hero-title">Skills & Experience</h1>
+      <p class="hero-subtitle">Technical expertise and professional experience in data analytics, machine learning, and software development</p>
+    </div>
+  </div>
+
+  <div class="content-container">
+    <!-- Skills Section -->
+    <div class="section">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <div class="skill-header">
+            <span class="skill-icon">💻</span>
+            <h3 class="skill-title">Programming Languages</h3>
+          </div>
+          <ul class="skill-list">
+            <li>Python</li>
+            <li>SQL</li>
+            <li>HTML</li>
+            <li>CSS</li>
+          </ul>
+        </div>
+        
+        <div class="skill-category">
+          <div class="skill-header">
+            <span class="skill-icon">🔧</span>
+            <h3 class="skill-title">Technical Skills</h3>
+          </div>
+          <ul class="skill-list">
+            <li>Data Preprocessing</li>
+            <li>Feature Engineering</li>
+            <li>Data Modeling</li>
+            <li>Exploratory Data Analysis (EDA)</li>
+          </ul>
+        </div>
+        
+        <div class="skill-category">
+          <div class="skill-header">
+            <span class="skill-icon">📚</span>
+            <h3 class="skill-title">Libraries & Tools</h3>
+          </div>
+          <ul class="skill-list">
+            <li>Power BI</li>
+            <li>Excel</li>
+            <li>Pandas</li>
+            <li>NumPy</li>
+            <li>Matplotlib</li>
+            <li>Seaborn</li>
+            <li>Streamlit</li>
+          </ul>
+        </div>
+        
+        <div class="skill-category">
+          <div class="skill-header">
+            <span class="skill-icon">🛠️</span>
+            <h3 class="skill-title">Version Control & IDEs</h3>
+          </div>
+          <ul class="skill-list">
+            <li>Git</li>
+            <li>GitHub</li>
+            <li>VS Code</li>
+            <li>Jupyter Notebook</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience Section -->
+    <div class="section">
+      <h2 class="section-title">Professional Experience</h2>
+      <div class="experience-timeline">
+        <div class="experience-item">
+          <div class="experience-dot"></div>
+          <div class="experience-card">
+            <div class="experience-header">
+              <div class="experience-title">Data Analytics Intern</div>
+              <div class="experience-company">Codenera Pvt Ltd</div>
+              <div class="experience-meta">
+                <span class="duration">Jan 2025 - June 2025</span>
+                <span class="location">Onsite - Pune</span>
+              </div>
+            </div>
+            <div class="experience-description">
+              Assisted in data extraction, transformation, and cleaning for real-time reporting. 
+              Designed and implemented interactive dashboards using Power BI to visualize KPIs and trends.
+            </div>
+            <div class="experience-highlights">
+              <div class="highlights-title">Key Responsibilities:</div>
+              <ul class="highlights-list">
+                <li>Worked with complex SQL queries, optimized joins, and aggregated data for reports</li>
+                <li>Conducted exploratory data analysis (EDA) to identify patterns and trends in datasets</li>
+                <li>Assisted in data extraction, transformation, and cleaning for real-time reporting</li>
+                <li>Designed and implemented interactive dashboards using Power BI to visualize KPIs and trends</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

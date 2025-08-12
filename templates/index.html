@@ -1,0 +1,694 @@
+{% extends 'base.html' %}
+
+{% block title %}Home — Pruthviraj Shitole{% endblock %}
+
+{% block head %}
+  <style>
+    .hero-section {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #0a0a0a 50%, #1a1a1a 75%, #0a0a0a 100%);
+      color: #ffffff;
+      padding: 120px 0;
+      text-align: center;
+      margin: -40px -32px 60px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.25) 0%, transparent 50%);
+      opacity: 1;
+      animation: gradientMove 8s ease-in-out infinite;
+    }
+    
+    @keyframes gradientMove {
+      0%, 100% { 
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      25% { 
+        transform: translate(-30px, -30px) scale(1.2);
+        opacity: 0.7;
+      }
+      50% { 
+        transform: translate(30px, 30px) scale(0.8);
+        opacity: 1;
+      }
+      75% { 
+        transform: translate(-20px, 20px) scale(1.1);
+        opacity: 0.8;
+      }
+    }
+    
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 80px 80px;
+      animation: gridMove 12s linear infinite;
+    }
+    
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(80px, 80px); }
+    }
+    
+    /* Floating particles */
+    .hero-section .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      animation: floatParticle 4s ease-in-out infinite;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+    
+    .hero-section .particle:nth-child(1) {
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+      animation-duration: 6s;
+    }
+    
+    .hero-section .particle:nth-child(2) {
+      top: 60%;
+      left: 80%;
+      animation-delay: 1s;
+      animation-duration: 5s;
+    }
+    
+    .hero-section .particle:nth-child(3) {
+      top: 80%;
+      left: 20%;
+      animation-delay: 2s;
+      animation-duration: 7s;
+    }
+    
+    .hero-section .particle:nth-child(4) {
+      top: 30%;
+      left: 70%;
+      animation-delay: 0.5s;
+      animation-duration: 6.5s;
+    }
+    
+    .hero-section .particle:nth-child(5) {
+      top: 70%;
+      left: 40%;
+      animation-delay: 1.5s;
+      animation-duration: 5.5s;
+    }
+    
+    .hero-section .particle:nth-child(6) {
+      top: 40%;
+      left: 90%;
+      animation-delay: 2.5s;
+      animation-duration: 4.5s;
+    }
+    
+    @keyframes floatParticle {
+      0%, 100% { 
+        transform: translateY(0px) translateX(0px) scale(1);
+        opacity: 0.9;
+      }
+      25% { 
+        transform: translateY(-30px) translateX(15px) scale(1.3);
+        opacity: 1;
+      }
+      50% { 
+        transform: translateY(-50px) translateX(-10px) scale(0.7);
+        opacity: 0.8;
+      }
+      75% { 
+        transform: translateY(-25px) translateX(20px) scale(1.2);
+        opacity: 1;
+      }
+    }
+    
+    /* Moving orbs */
+    .hero-section .orb {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+      animation: moveOrb 12s linear infinite;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    
+    .hero-section .orb:nth-child(7) {
+      width: 120px;
+      height: 120px;
+      top: -60px;
+      left: -60px;
+      animation-delay: 0s;
+      animation-duration: 15s;
+    }
+    
+    .hero-section .orb:nth-child(8) {
+      width: 80px;
+      height: 80px;
+      top: 50%;
+      right: -40px;
+      animation-delay: 3s;
+      animation-duration: 18s;
+    }
+    
+    .hero-section .orb:nth-child(9) {
+      width: 60px;
+      height: 60px;
+      bottom: -30px;
+      left: 30%;
+      animation-delay: 6s;
+      animation-duration: 12s;
+    }
+    
+    @keyframes moveOrb {
+      0% { 
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.5;
+      }
+      25% { 
+        transform: translate(120px, 60px) rotate(90deg);
+        opacity: 0.8;
+      }
+      50% { 
+        transform: translate(60px, 120px) rotate(180deg);
+        opacity: 0.6;
+      }
+      75% { 
+        transform: translate(-60px, 90px) rotate(270deg);
+        opacity: 0.9;
+      }
+      100% { 
+        transform: translate(0, 0) rotate(360deg);
+        opacity: 0.5;
+      }
+    }
+    
+    /* Glowing lines */
+    .hero-section .glow-line {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      animation: glowLine 4s ease-in-out infinite;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+    
+    .hero-section .glow-line:nth-child(10) {
+      width: 250px;
+      top: 25%;
+      left: -250px;
+      animation-delay: 0s;
+    }
+    
+    .hero-section .glow-line:nth-child(11) {
+      width: 200px;
+      top: 75%;
+      right: -200px;
+      animation-delay: 2s;
+    }
+    
+    @keyframes glowLine {
+      0%, 100% { 
+        transform: translateX(0);
+        opacity: 0;
+      }
+      50% { 
+        transform: translateX(500px);
+        opacity: 1;
+      }
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1s ease-out;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .hero-name {
+      font-size: 4.5rem;
+      font-weight: 700;
+      margin: 0 0 20px;
+      text-shadow: 0 0 30px rgba(255,255,255,0.3);
+      letter-spacing: 0.05em;
+      animation: slideInLeft 1.2s ease-out 0.3s both;
+      color: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      text-transform: none;
+    }
+    
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .hero-title {
+      font-size: 1.6rem;
+      opacity: 0.9;
+      margin-bottom: 24px;
+      font-weight: 400;
+      animation: slideInRight 1.2s ease-out 0.5s both;
+      color: rgba(255,255,255,0.8);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      text-shadow: none;
+    }
+    
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .hero-subtitle {
+      font-size: 1.3rem;
+      opacity: 0.7;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+      animation: fadeIn 1.2s ease-out 0.7s both;
+      color: rgba(255,255,255,0.7);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: transparent;
+    }
+    
+    .summary-section {
+      background: rgba(255,255,255,0.02);
+      backdrop-filter: blur(20px);
+      border-radius: 16px;
+      padding: 60px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+      animation: slideInUp 1s ease-out 0.8s both;
+    }
+    
+    .summary-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    }
+    
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin: 0 0 30px;
+      text-align: center;
+      position: relative;
+      animation: fadeInUp 1s ease-out 1s both;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      text-shadow: none;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+      border-radius: 1px;
+      animation: expandWidth 1.5s ease-out 1.2s both;
+    }
+    
+    @keyframes expandWidth {
+      from { width: 0; }
+      to { width: 60px; }
+    }
+    
+    .summary-text {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.8);
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 32px;
+      animation: fadeInUp 1s ease-out 1.1s both;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+    
+    .contact-item {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 28px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 1s ease-out 1.3s both;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    
+    .contact-item:nth-child(1) { animation-delay: 1.3s; }
+    .contact-item:nth-child(2) { animation-delay: 1.4s; }
+    .contact-item:nth-child(3) { animation-delay: 1.5s; }
+    .contact-item:nth-child(4) { animation-delay: 1.6s; }
+    
+    .contact-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .contact-item:hover::before {
+      left: 100%;
+    }
+    
+    .contact-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+    }
+    
+    .contact-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    
+    .contact-item:hover .contact-icon {
+      transform: scale(1.1);
+    }
+    
+    .contact-label {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 8px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .contact-value {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+      font-weight: 500;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .contact-value a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      text-shadow: none;
+    }
+    
+    .contact-value a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: rgba(255,255,255,0.8);
+      transition: width 0.3s ease;
+    }
+    
+    .contact-value a:hover::after {
+      width: 100%;
+    }
+    
+    .contact-value a:hover {
+      color: rgba(255,255,255,1);
+    }
+    
+    .welcome-section {
+      background: rgba(255,255,255,0.02);
+      backdrop-filter: blur(20px);
+      border-radius: 16px;
+      padding: 60px;
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+      animation: slideInUp 1s ease-out 1.7s both;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+    
+    .welcome-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 30% 70%, rgba(120, 119, 198, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(255, 119, 198, 0.05) 0%, transparent 50%);
+      opacity: 0.8;
+    }
+    
+    .welcome-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin: 0 0 20px;
+      position: relative;
+      z-index: 1;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      text-shadow: none;
+    }
+    
+    .welcome-text {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .cta-section {
+      text-align: center;
+      margin: 40px 0;
+      animation: fadeIn 1s ease-out 1.9s both;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      color: #ffffff;
+      padding: 18px 36px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      text-transform: none;
+      letter-spacing: 0.02em;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .cta-button:hover::before {
+      left: 100%;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.3);
+    }
+    
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-name { font-size: 3rem; }
+      .hero-title { font-size: 1.3rem; }
+      .hero-subtitle { font-size: 1.1rem; }
+      .summary-section { padding: 40px 30px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .section-title { font-size: 1.8rem; }
+      .welcome-section { padding: 40px 30px; }
+      .cta-button { padding: 16px 28px; font-size: 1rem; }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-name { font-size: 2.5rem; }
+      .hero-title { font-size: 1.2rem; }
+      .hero-subtitle { font-size: 1rem; }
+      .summary-section { padding: 30px 20px; }
+      .welcome-section { padding: 30px 20px; }
+      .contact-item { padding: 24px; }
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="hero-section">
+    <!-- Animated background elements -->
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="glow-line"></div>
+    <div class="glow-line"></div>
+    
+    <div class="hero-content">
+      <h1 class="hero-name">PRUTHVIRAJ SHITOLE</h1>
+      <div class="hero-title">Data Analyst | AI/ML Enthusiast | Python & SQL Developer</div>
+      <p class="hero-subtitle">Transforming complex data into actionable business intelligence through advanced analytics and machine learning solutions</p>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="summary-section">
+      <h2 class="section-title">About Me</h2>
+      <p class="summary-text">
+        AI & ML Engineering student with hands-on experience in data analysis and machine learning. 
+        Proficient in Python, SQL, and Power BI. Delivered real-world data projects with performance insights 
+        and visual dashboards. Known for rapid learning, independent problem-solving, and a data-driven 
+        mindset. Passionate about transforming complex data into actionable business intelligence.
+      </p>
+      
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span class="contact-icon">📱</span>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">+91 9916231077</div>
+        </div>
+        
+        <div class="contact-item">
+          <span class="contact-icon">✉️</span>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">
+            <a href="mailto:pruthvirajgshitole@gmail.com">pruthvirajgshitole@gmail.com</a>
+          </div>
+    </div>
+        
+        <div class="contact-item">
+          <span class="contact-icon">📍</span>
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Pune, India</div>
+        </div>
+        
+        <div class="contact-item">
+          <span class="contact-icon">💼</span>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">
+            <a href="https://www.linkedin.com/in/pruthviraj-shitole" target="_blank" rel="noopener noreferrer">View Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="welcome-section">
+      <h2 class="welcome-title">Welcome to My Portfolio</h2>
+      <p class="welcome-text">
+        Explore my projects, skills, and experience in the field of Data Analytics, AI, and Machine Learning. 
+        Discover how I've applied data-driven approaches to solve real-world problems and create meaningful insights.
+      </p>
+    </div>
+
+    <div class="cta-section">
+      <a href="{% url 'projects' %}" class="cta-button">View My Projects</a>
+    </div>
+  </div>
+{% endblock %}

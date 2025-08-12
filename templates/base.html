@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{% block title %}Portfolio{% endblock %}</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+    
+    body {
+      margin: 0;
+      font-family: 'Orbitron', 'Courier New', monospace;
+      background: #000000;
+      color: #00ff41;
+      overflow-x: hidden;
+    }
+    
+    /* Matrix rain background */
+    .matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.15;
+    }
+    
+    .matrix-bg::before {
+      content: '01';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, #00ff41, transparent);
+      animation: matrixRain 15s linear infinite;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      line-height: 12px;
+      color: #00ff41;
+      text-shadow: 0 0 3px #00ff41;
+    }
+    
+    @keyframes matrixRain {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100vh); }
+    }
+    
+    /* Hacker grid overlay */
+    .hacker-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.08;
+      background-image: 
+        linear-gradient(rgba(0,255,65,0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,65,0.15) 1px, transparent 1px);
+      background-size: 30px 30px;
+      animation: gridMove 20s linear infinite;
+    }
+    
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(30px, 30px); }
+    }
+    
+    /* Additional cyberpunk elements */
+    .cyber-lines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.03;
+    }
+    
+    .cyber-lines::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(45deg, transparent 49%, rgba(0,255,65,0.1) 50%, transparent 51%),
+        linear-gradient(-45deg, transparent 49%, rgba(0,255,65,0.1) 50%, transparent 51%);
+      background-size: 100px 100px;
+      animation: cyberScan 25s linear infinite;
+    }
+    
+    @keyframes cyberScan {
+      0% { transform: translateX(-100px) translateY(-100px); }
+      100% { transform: translateX(100px) translateY(100px); }
+    }
+    
+    header {
+      background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+      padding: 20px 0;
+      border-bottom: 3px solid #10b981;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(16, 185, 129, 0.3);
+      position: relative;
+      z-index: 1000;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #10b981, transparent);
+      animation: headerScan 2s ease-in-out infinite;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+    }
+    
+    .code-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+      font-size: 1.8rem;
+      color: #10b981;
+      text-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+      position: relative;
+    }
+    
+    .code-symbol {
+      color: #34d399;
+      animation: codeGlow 3s ease-in-out infinite;
+      text-shadow: 0 0 10px rgba(52, 211, 153, 0.6);
+    }
+    
+    .code-text {
+      color: #ffffff;
+      letter-spacing: 2px;
+      animation: textPulse 2s ease-in-out infinite;
+      position: relative;
+    }
+    
+    .code-text::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #10b981, #34d399, #10b981);
+      animation: underlineGlow 2s ease-in-out infinite;
+    }
+    
+    .typing-cursor {
+      width: 3px;
+      height: 25px;
+      background: #10b981;
+      animation: blink 1s infinite;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+    }
+    
+    @keyframes codeGlow {
+      0%, 100% { 
+        text-shadow: 0 0 10px rgba(52, 211, 153, 0.6);
+        transform: scale(1);
+      }
+      50% { 
+        text-shadow: 0 0 20px rgba(52, 211, 153, 0.8), 0 0 30px rgba(52, 211, 153, 0.4);
+        transform: scale(1.05);
+      }
+    }
+    
+    @keyframes textPulse {
+      0%, 100% { 
+        text-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+        transform: translateY(0);
+      }
+      50% { 
+        text-shadow: 0 0 25px rgba(16, 185, 129, 0.7), 0 0 35px rgba(16, 185, 129, 0.3);
+        transform: translateY(-1px);
+      }
+    }
+    
+    @keyframes underlineGlow {
+      0%, 100% { 
+        opacity: 0.7;
+        box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+      }
+      50% { 
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+      }
+    }
+    
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+    
+    nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    
+    nav a {
+      color: #e2e8f0;
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      font-weight: 500;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    nav a:hover {
+      color: #ffffff;
+      background: rgba(16, 185, 129, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    
+    nav a:hover::before {
+      left: 100%;
+    }
+    
+    nav a.active {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 0;
+      }
+      
+      .header-content {
+        gap: 20px;
+        padding: 0 20px;
+      }
+      
+      .code-logo {
+        font-size: 1.5rem;
+      }
+      
+      .typing-cursor {
+        height: 20px;
+      }
+      
+      nav {
+        gap: 8px;
+      }
+      
+      nav a {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
+    }
+    
+    main {
+      padding: 40px 32px;
+      background: #000000;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    footer {
+      background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+      color: #e2e8f0;
+      padding: 20px 0;
+      border-top: 3px solid #10b981;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(16, 185, 129, 0.3);
+      position: relative;
+      z-index: 1000;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #10b981, transparent);
+      animation: headerScan 2s ease-in-out infinite;
+    }
+    
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    footer p {
+      margin: 0;
+      color: #e2e8f0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    footer a {
+      color: #34d399;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    footer a:hover {
+      color: #10b981;
+      text-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    
+    .footer-links a {
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .footer-links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .footer-links a:hover {
+      background: rgba(16, 185, 129, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    
+    .footer-links a:hover::before {
+      left: 100%;
+    }
+    
+    @media (max-width: 768px) {
+      footer {
+        padding: 15px 0;
+      }
+      
+      footer .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 0 15px;
+      }
+      
+      .footer-links {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+    
+    /* Terminal cursor effect */
+    .terminal-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: #00ff41;
+      animation: blink 1s infinite;
+      margin-left: 2px;
+    }
+    
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    /* Floating Code Symbols */
+    .floating-code {
+      position: fixed;
+      color: rgba(16, 185, 129, 0.1);
+      font-family: 'Courier New', monospace;
+      font-size: 1.2rem;
+      pointer-events: none;
+      z-index: 1;
+      animation: floatCode 15s linear infinite;
+    }
+    
+    .floating-code:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+    .floating-code:nth-child(2) { top: 20%; right: 10%; animation-delay: 2s; }
+    .floating-code:nth-child(3) { top: 60%; left: 15%; animation-delay: 4s; }
+    .floating-code:nth-child(4) { top: 80%; right: 20%; animation-delay: 6s; }
+    .floating-code:nth-child(5) { top: 30%; left: 80%; animation-delay: 8s; }
+    .floating-code:nth-child(6) { top: 70%; left: 85%; animation-delay: 10s; }
+    
+    @keyframes floatCode {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.3;
+      }
+      90% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
+    /* Binary Rain Effect */
+    .binary-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    
+    .binary-column {
+      position: absolute;
+      top: -100%;
+      color: rgba(16, 185, 129, 0.03);
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      line-height: 1.2;
+      white-space: nowrap;
+      animation: binaryFall linear infinite;
+    }
+    
+    .binary-column:nth-child(1) { left: 5%; animation-duration: 20s; animation-delay: 0s; }
+    .binary-column:nth-child(2) { left: 15%; animation-duration: 25s; animation-delay: 2s; }
+    .binary-column:nth-child(3) { left: 25%; animation-duration: 18s; animation-delay: 4s; }
+    .binary-column:nth-child(4) { left: 35%; animation-duration: 22s; animation-delay: 6s; }
+    .binary-column:nth-child(5) { left: 45%; animation-duration: 19s; animation-delay: 8s; }
+    .binary-column:nth-child(6) { left: 55%; animation-duration: 24s; animation-delay: 10s; }
+    .binary-column:nth-child(7) { left: 65%; animation-duration: 21s; animation-delay: 12s; }
+    .binary-column:nth-child(8) { left: 75%; animation-duration: 23s; animation-delay: 14s; }
+    .binary-column:nth-child(9) { left: 85%; animation-duration: 17s; animation-delay: 16s; }
+    .binary-column:nth-child(10) { left: 95%; animation-duration: 26s; animation-delay: 18s; }
+    
+    @keyframes binaryFall {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(100vh);
+      }
+    }
+  </style>
+  {% block head %}{% endblock %}
+  {% load static %}
+</head>
+<body>
+  <div class="matrix-bg"></div>
+  <div class="hacker-grid"></div>
+  <!-- Floating Code Symbols -->
+  <div class="floating-code">&lt;/&gt;</div>
+  <div class="floating-code">{}</div>
+  <div class="floating-code">()</div>
+  <div class="floating-code">[]</div>
+  <div class="floating-code">//</div>
+  <div class="floating-code">/* */</div>
+  
+  <!-- Binary Rain -->
+  <div class="binary-rain">
+    <div class="binary-column">10101010<br>01010101<br>11001100<br>00110011<br>11110000<br>00001111</div>
+    <div class="binary-column">11001100<br>00110011<br>10101010<br>01010101<br>11110000<br>00001111</div>
+    <div class="binary-column">10101010<br>01010101<br>11001100<br>00110011<br>11110000<br>00001111</div>
+    <div class="binary-column">11001100<br>00110011<br>10101010<br>01010101<br>11110000<br>00001111</div>
+    <div class="binary-column">10101010<br>01010101<br>11001100<br>00110011<br>11110000<br>00001111</div>
+    <div class="binary-column">11001100<br>00110011<br>10101010<br>01010101<br>11110000<br>00001111</div>
+    <div class="binary-column">10101010<br>01010101<br>11001100<br>00110011<br>11110000<br>00001111</div>
+    <div class="binary-column">11001100<br>00110011<br>10101010<br>01010101<br>11110000<br>00001111</div>
+    <div class="binary-column">10101010<br>01010101<br>11001100<br>00110011<br>11110000<br>00001111</div>
+    <div class="binary-column">11001100<br>00110011<br>10101010<br>01010101<br>11110000<br>00001111</div>
+  </div>
+  
+  <div class="cyber-lines"></div>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo-section">
+          <div class="code-logo">
+            <span class="code-symbol">&lt;</span>
+            <span class="code-text">DEV</span>
+            <span class="code-symbol">/&gt;</span>
+          </div>
+          <div class="typing-cursor"></div>
+        </div>
+        <nav>
+          <a href="{% url 'index' %}" class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">Home</a>
+          <a href="{% url 'projects' %}" class="{% if request.resolver_match.url_name == 'projects' %}active{% endif %}">Projects</a>
+          <a href="{% url 'education' %}" class="{% if request.resolver_match.url_name == 'education' %}active{% endif %}">Education</a>
+          <a href="{% url 'experience' %}" class="{% if request.resolver_match.url_name == 'experience' %}active{% endif %}">Experience</a>
+          <a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; {% now "Y" %} Portfolio. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'projects' %}">Projects</a>
+        <a href="{% url 'contact' %}">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+
+

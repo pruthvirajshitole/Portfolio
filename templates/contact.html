@@ -1,0 +1,907 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact — Pruthviraj Shitole{% endblock %}
+
+{% block head %}
+  <style>
+    .hero-section {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #0a0a0a 50%, #1a1a1a 75%, #0a0a0a 100%);
+      color: #ffffff;
+      padding: 100px 0;
+      text-align: center;
+      margin: -40px -32px 50px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 100, 200, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(100, 200, 255, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(200, 255, 100, 0.2) 0%, transparent 50%);
+      opacity: 1;
+      animation: gradientMove 13s ease-in-out infinite;
+    }
+    
+    @keyframes gradientMove {
+      0%, 100% { 
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      25% { 
+        transform: translate(-18px, -18px) scale(1.08);
+        opacity: 0.8;
+      }
+      50% { 
+        transform: translate(18px, 18px) scale(0.95);
+        opacity: 1;
+      }
+      75% { 
+        transform: translate(-12px, 12px) scale(1.04);
+        opacity: 0.9;
+      }
+    }
+    
+    /* Communication grid pattern */
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(90deg, rgba(255, 100, 200, 0.03) 1px, transparent 1px),
+        linear-gradient(rgba(255, 100, 200, 0.03) 1px, transparent 1px);
+      background-size: 90px 90px;
+      animation: gridMove 19s linear infinite;
+    }
+    
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(90px, 90px); }
+    }
+    
+    /* Floating communication symbols */
+    .hero-section .communication-symbol {
+      position: absolute;
+      color: rgba(255, 100, 200, 0.9);
+      font-size: 1.7rem;
+      animation: floatCommunication 7s ease-in-out infinite;
+      text-shadow: 0 0 12px rgba(255, 100, 200, 0.6);
+    }
+    
+    .hero-section .communication-symbol:nth-child(1) {
+      content: '💬';
+      top: 22%;
+      left: 16%;
+      animation-delay: 0s;
+      animation-duration: 9s;
+    }
+    
+    .hero-section .communication-symbol:nth-child(2) {
+      content: '📧';
+      top: 62%;
+      left: 84%;
+      animation-delay: 2s;
+      animation-duration: 8s;
+    }
+    
+    .hero-section .communication-symbol:nth-child(3) {
+      content: '📱';
+      top: 78%;
+      left: 18%;
+      animation-delay: 4s;
+      animation-duration: 10s;
+    }
+    
+    .hero-section .communication-symbol:nth-child(4) {
+      content: '🌐';
+      top: 38%;
+      left: 82%;
+      animation-delay: 1s;
+      animation-duration: 7s;
+    }
+    
+    .hero-section .communication-symbol:nth-child(5) {
+      content: '📡';
+      top: 58%;
+      left: 48%;
+      animation-delay: 3s;
+      animation-duration: 8.5s;
+    }
+    
+    @keyframes floatCommunication {
+      0%, 100% { 
+        transform: translateY(0px) translateX(0px) rotate(0deg);
+        opacity: 0.9;
+      }
+      25% { 
+        transform: translateY(-24px) translateX(13px) rotate(7deg);
+        opacity: 1;
+      }
+      50% { 
+        transform: translateY(-42px) translateX(-11px) rotate(-6deg);
+        opacity: 0.8;
+      }
+      75% { 
+        transform: translateY(-19px) translateX(17px) rotate(4deg);
+        opacity: 1;
+      }
+    }
+    
+    /* Floating network nodes */
+    .hero-section .network-node {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 100, 200, 0.2) 0%, transparent 70%);
+      animation: moveNetwork 13s linear infinite;
+      box-shadow: 0 0 18px rgba(255, 100, 200, 0.4);
+    }
+    
+    .hero-section .network-node:nth-child(6) {
+      width: 85px;
+      height: 85px;
+      top: -42px;
+      left: -42px;
+      animation-delay: 0s;
+      animation-duration: 17s;
+    }
+    
+    .hero-section .network-node:nth-child(7) {
+      width: 60px;
+      height: 60px;
+      top: 50%;
+      right: -30px;
+      animation-delay: 4s;
+      animation-duration: 21s;
+    }
+    
+    .hero-section .network-node:nth-child(8) {
+      width: 40px;
+      height: 40px;
+      bottom: -20px;
+      left: 42%;
+      animation-delay: 8s;
+      animation-duration: 15s;
+    }
+    
+    @keyframes moveNetwork {
+      0% { 
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.6;
+      }
+      25% { 
+        transform: translate(85px, 52px) rotate(90deg);
+        opacity: 0.9;
+      }
+      50% { 
+        transform: translate(52px, 85px) rotate(180deg);
+        opacity: 0.7;
+      }
+      75% { 
+        transform: translate(-52px, 68px) rotate(270deg);
+        opacity: 1;
+      }
+      100% { 
+        transform: translate(0, 0) rotate(360deg);
+        opacity: 0.6;
+      }
+    }
+    
+    /* Connection lines */
+    .hero-section .connection-line {
+      position: absolute;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 100, 200, 0.6), transparent);
+      animation: connectionLine 6.5s ease-in-out infinite;
+      box-shadow: 0 0 16px rgba(255, 100, 200, 0.4);
+    }
+    
+    .hero-section .connection-line:nth-child(9) {
+      width: 270px;
+      top: 35%;
+      left: -270px;
+      animation-delay: 0s;
+    }
+    
+    .hero-section .connection-line:nth-child(10) {
+      width: 230px;
+      top: 65%;
+      right: -230px;
+      animation-delay: 3s;
+    }
+    
+    @keyframes connectionLine {
+      0%, 100% { 
+        transform: translateX(0);
+        opacity: 0;
+      }
+      50% { 
+        transform: translateX(540px);
+        opacity: 1;
+      }
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0 0 16px;
+      text-shadow: 0 0 25px #00ff41, 0 0 50px #00ff41;
+      font-family: 'Orbitron', monospace;
+      animation: glitch 2s infinite;
+      position: relative;
+    }
+    
+    .hero-title::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+      color: #00ff88;
+      font-family: 'Orbitron', monospace;
+    }
+    
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    
+    .contact-info {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 32px rgba(16, 185, 129, 0.15), inset 0 0 0 1px rgba(16, 185, 129, 0.2);
+      border: 2px solid #10b981;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .contact-info::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #10b981, #34d399, #10b981);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    
+    .contact-form {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 32px rgba(16, 185, 129, 0.15), inset 0 0 0 1px rgba(16, 185, 129, 0.2);
+      border: 2px solid #10b981;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .contact-form::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #10b981, #34d399, #10b981);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #10b981;
+      margin: 0 0 24px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      text-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #00ff41, #00ff88, #00ff41);
+      border-radius: 2px;
+      box-shadow: 0 0 10px #00ff41;
+    }
+    
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding: 16px;
+      background: rgba(16, 185, 129, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .contact-method::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0,255,65,0.2), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .contact-method:hover::before {
+      left: 100%;
+    }
+    
+    .contact-method:hover {
+      background: rgba(16, 185, 129, 0.1);
+      border-color: #34d399;
+      transform: translateX(8px);
+    }
+    
+    .contact-icon {
+      font-size: 1.5rem;
+      color: #10b981;
+      text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+    }
+    
+    .contact-details h4 {
+      color: #34d399;
+      margin: 0 0 4px;
+      font-weight: 600;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .contact-details p {
+      color: #e2e8f0;
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .contact-details a {
+      color: #34d399;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      text-shadow: 0 0 8px rgba(16, 185, 129, 0.2);
+    }
+    
+    .contact-details a:hover {
+      color: #10b981;
+      text-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+    }
+    
+    .social-links {
+      margin-top: 32px;
+    }
+    
+    .social-title {
+      color: #10b981;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0 0 16px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+    }
+    
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    
+    .social-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: rgba(16, 185, 129, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      color: inherit;
+    }
+    
+    .social-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0,255,65,0.2), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .social-item:hover::before {
+      left: 100%;
+    }
+    
+    .social-item:hover {
+      background: rgba(16, 185, 129, 0.1);
+      border-color: #34d399;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+    }
+    
+    .social-icon {
+      font-size: 1.3rem;
+      color: #10b981;
+      text-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+    }
+    
+    .social-name {
+      color: #34d399;
+      font-weight: 500;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 24px;
+    }
+    
+    .form-label {
+      display: block;
+      color: #34d399;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(16, 185, 129, 0.05);
+      border: 2px solid rgba(16, 185, 129, 0.2);
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.1);
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+    }
+    
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      background: linear-gradient(135deg, #10b981, #34d399);
+      color: #ffffff;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    }
+    
+    .submit-btn:hover {
+      background: linear-gradient(135deg, #34d399, #10b981);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    }
+    
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+    
+    .additional-info {
+      background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      margin-bottom: 40px;
+      border: 2px solid #00ff41;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .additional-info::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0,255,65,0.2), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .additional-info:hover::before {
+      left: 100%;
+    }
+    
+    .info-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #00ff41;
+      margin: 0 0 16px;
+      font-family: 'Orbitron', monospace;
+      text-shadow: 0 0 15px #00ff41;
+    }
+    
+    .info-text {
+      font-size: 1.1rem;
+      color: #00ff88;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+      font-family: 'Orbitron', monospace;
+    }
+    
+    .availability-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #00ff41, #00ff88);
+      color: #000000;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-top: 16px;
+      box-shadow: 0 2px 8px rgba(0,255,65,0.4);
+      font-family: 'Orbitron', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: 2px solid #00ff41;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2rem; }
+      .hero-subtitle { font-size: 1rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 30px; }
+      .contact-info, .contact-form { padding: 30px 20px; }
+      .section-title { font-size: 1.5rem; }
+      .social-grid { grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); }
+    }
+    
+    /* Animation for form inputs */
+    .form-input:focus + .form-label {
+      color: #00ff88;
+    }
+    
+    /* Success message styling */
+    .success-message {
+      background: linear-gradient(135deg, #000000, #0a0a0a);
+      color: #00ff41;
+      padding: 16px;
+      border-radius: 8px;
+      border: 2px solid #00ff41;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: 500;
+      font-family: 'Orbitron', monospace;
+      text-shadow: 0 0 5px #00ff41;
+      box-shadow: 0 0 15px rgba(0,255,65,0.3);
+    }
+    
+    /* Error message styling */
+    .error-message {
+      background: linear-gradient(135deg, #000000, #0a0a0a);
+      color: #ff4141;
+      padding: 16px;
+      border-radius: 8px;
+      border: 2px solid #ff4141;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: 500;
+      font-family: 'Orbitron', monospace;
+      text-shadow: 0 0 5px #ff4141;
+      box-shadow: 0 0 15px rgba(255,65,65,0.3);
+    }
+    
+    /* Missing animations */
+    @keyframes shimmer {
+      0%, 100% { transform: translateX(-100%); }
+      50% { transform: translateX(100%); }
+    }
+    
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+    }
+    
+
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Message styling */
+    .message {
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: 500;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      animation: slideInDown 0.3s ease-out;
+    }
+    
+    .message.success {
+      background: linear-gradient(135deg, #1e293b, #334155);
+      color: #10b981;
+      border: 2px solid #10b981;
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+    }
+    
+    .message.error {
+      background: linear-gradient(135deg, #1e293b, #334155);
+      color: #ef4444;
+      border: 2px solid #ef4444;
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+    }
+    
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="hero-section">
+    <!-- Animated background elements -->
+    <div class="communication-symbol">💬</div>
+    <div class="communication-symbol">📧</div>
+    <div class="communication-symbol">📱</div>
+    <div class="communication-symbol">🌐</div>
+    <div class="communication-symbol">📡</div>
+    <div class="network-node"></div>
+    <div class="network-node"></div>
+    <div class="network-node"></div>
+    <div class="connection-line"></div>
+    <div class="connection-line"></div>
+    
+    <div class="hero-content">
+      <h1 class="hero-title">Get In Touch</h1>
+      <p class="hero-subtitle">Let's discuss opportunities, collaborations, or just have a conversation about data science and technology</p>
+    </div>
+  </div>
+
+  <div class="content-container">
+    <div class="contact-grid">
+      <!-- Contact Information -->
+      <div class="contact-info">
+        <h2 class="section-title">Contact Information</h2>
+        <div class="contact-methods">
+          <div class="contact-method">
+            <span class="contact-icon">📱</span>
+            <div class="contact-details">
+              <h4>Phone</h4>
+              <p><a href="tel:+919916231077">+91 9916231077</a></p>
+            </div>
+          </div>
+          
+          <div class="contact-method">
+            <span class="contact-icon">✉️</span>
+            <div class="contact-details">
+              <h4>Email</h4>
+              <p><a href="mailto:pruthvirajgshitole@gmail.com">pruthvirajgshitole@gmail.com</a></p>
+            </div>
+          </div>
+          
+          <div class="contact-method">
+            <span class="contact-icon">📍</span>
+            <div class="contact-details">
+              <h4>Location</h4>
+              <p>Pune, Maharashtra, India</p>
+            </div>
+          </div>
+          
+          <div class="contact-method">
+            <span class="contact-icon">💼</span>
+            <div class="contact-details">
+              <h4>LinkedIn</h4>
+              <p><a href="https://www.linkedin.com/in/pruthviraj-shitole" target="_blank" rel="noopener noreferrer">pruthviraj-shitole</a></p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="social-links">
+          <h3 class="social-title">Connect With Me</h3>
+          <div class="social-grid">
+            <a href="https://github.com/pruthvirajshitole" target="_blank" rel="noopener noreferrer" class="social-item">
+              <span class="social-icon">🐙</span>
+              <div class="social-name">GitHub</div>
+            </a>
+            <a href="https://www.linkedin.com/in/pruthviraj-shitole" target="_blank" rel="noopener noreferrer" class="social-item">
+              <span class="social-icon">💼</span>
+              <div class="social-name">LinkedIn</div>
+            </a>
+            <a href="mailto:pruthvirajgshitole@gmail.com" class="social-item">
+              <span class="social-icon">📧</span>
+              <div class="social-name">Email</div>
+            </a>
+            <a href="tel:+919916231077" class="social-item">
+              <span class="social-icon">📞</span>
+              <div class="social-name">Call</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form">
+        <h2 class="section-title">Send a Message</h2>
+        <form id="contactForm">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="name" class="form-label">Full Name *</label>
+            <input type="text" id="name" name="name" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address *</label>
+            <input type="email" id="email" name="email" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="subject" class="form-label">Subject</label>
+            <input type="text" id="subject" name="subject" class="form-input" placeholder="e.g., Project Discussion, Job Opportunity">
+          </div>
+          
+          <div class="form-group">
+            <label for="message" class="form-label">Message *</label>
+            <textarea id="message" name="message" class="form-input form-textarea" required placeholder="Tell me about your project, opportunity, or just say hello!"></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Additional Information -->
+    <div class="additional-info">
+      <h2 class="info-title">Let's Work Together</h2>
+      <p class="info-text">
+        I'm always interested in new opportunities, interesting projects, and meaningful collaborations. 
+        Whether you have a data analysis project, want to discuss AI/ML solutions, or just want to connect, 
+        I'd love to hear from you!
+      </p>
+      <div class="availability-badge">Available for Opportunities</div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = new FormData(this);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const subject = formData.get('subject');
+      const message = formData.get('message');
+      
+      // Show loading state
+      const submitBtn = this.querySelector('.submit-btn');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+      
+      try {
+        // Send data to backend
+        const response = await fetch('{% url "contact" %}', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            subject: subject,
+            message: message
+          })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          // Show success message
+          showMessage(result.message, 'success');
+          
+          // Reset form
+          this.reset();
+          
+          // Also open email client as backup
+          const mailtoLink = `mailto:pruthvirajgshitole@gmail.com?subject=${encodeURIComponent(subject || 'Portfolio Contact: ' + name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+          window.open(mailtoLink);
+          
+        } else {
+          showMessage(result.message, 'error');
+        }
+        
+      } catch (error) {
+        console.error('Error:', error);
+        showMessage('An error occurred. Please try again.', 'error');
+      } finally {
+        // Reset button state
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+    
+    function showMessage(message, type) {
+      // Remove existing messages
+      const existingMsg = document.querySelector('.message');
+      if (existingMsg) existingMsg.remove();
+      
+      // Create new message
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `message ${type}`;
+      msgDiv.textContent = message;
+      
+      // Insert at top of form
+      const form = document.getElementById('contactForm');
+      form.insertBefore(msgDiv, form.firstChild);
+      
+      // Remove after 5 seconds
+      setTimeout(() => {
+        msgDiv.remove();
+      }, 5000);
+    }
+  </script>
+{% endblock %}
