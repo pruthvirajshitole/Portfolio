@@ -451,6 +451,12 @@
       to { opacity: 1; transform: translateX(0); }
     }
     
+    /* Message notification animations */
+    @keyframes slideOutRight {
+      from { opacity: 1; transform: translateX(0); }
+      to { opacity: 0; transform: translateX(clamp(30px, 6vw, 50px)); }
+    }
+    
     /* Enhanced responsive design with better aspect ratios */
     @media (max-width: 1024px) {
       .hero-section {
@@ -627,7 +633,7 @@
         <div class="contact-details">
           <div class="contact-label">Email</div>
           <div class="contact-value">
-            <a href="pruthvirajgshitole@gmail.com">pruthvirajgshitole@gmail.com</a>
+            <a href="mailto:pruthvirajgshitole@gmail.com">pruthvirajgshitole@gmail.com</a>
           </div>
         </div>
       </div>
@@ -645,12 +651,22 @@
 
     <div class="resume-section">
       <h2 class="section-title">My Resume</h2>
-      <a href="{% static 'resume/My_resume.pdf' %}" download class="resume-button">
+      <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px; font-size: clamp(0.9rem, 2.2vw, 1rem);">
+        Click the button below to download my resume
+      </p>
+      <a href="{% static 'resume/My_resume.pdf' %}" download="Pruthviraj_Shitole_Resume.pdf" class="resume-button" id="resumeDownload">
         <svg class="resume-icon" viewBox="0 0 24 24" fill="currentColor">
           <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
         </svg>
         Download Resume
       </a>
+      
+      <!-- Fallback download method -->
+      <div style="text-align: center; margin-top: 15px;">
+        <a href="{% static 'resume/My_resume.pdf' %}" target="_blank" style="color: #10b981; text-decoration: none; font-size: clamp(0.85rem, 2vw, 0.95rem); opacity: 0.8;">
+          Open in new tab (if download doesn't work)
+        </a>
+      </div>
     </div>
 
     <div class="social-section">
@@ -672,4 +688,67 @@
       </div>
     </div>
   </div>
+  
+  <script>
+    // Enhanced resume download handling for production deployment
+    document.addEventListener('DOMContentLoaded', function() {
+      const resumeDownload = document.getElementById('resumeDownload');
+      
+      if (resumeDownload) {
+        resumeDownload.addEventListener('click', function(e) {
+          // Try to detect if download is working
+          const link = document.createElement('a');
+          link.href = this.href;
+          link.download = this.download;
+          link.style.display = 'none';
+          
+          document.body.appendChild(link);
+          
+          try {
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show success message
+            showMessage('Resume download started!', 'success');
+          } catch (error) {
+            console.log('Download failed, opening in new tab');
+            // Fallback: open in new tab
+            window.open(this.href, '_blank');
+            showMessage('Resume opened in new tab. Right-click and "Save As" to download.', 'info');
+          }
+        });
+      }
+      
+      function showMessage(message, type) {
+        // Create temporary message
+        const msgDiv = document.createElement('div');
+        msgDiv.textContent = message;
+        msgDiv.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: ${type === 'success' ? '#10b981' : '#3b82f6'};
+          color: white;
+          padding: 12px 20px;
+          border-radius: 8px;
+          font-size: 14px;
+          z-index: 1000;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+          animation: slideInRight 0.3s ease-out;
+        `;
+        
+        document.body.appendChild(msgDiv);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+          msgDiv.style.animation = 'slideOutRight 0.3s ease-out';
+          setTimeout(() => {
+            if (msgDiv.parentNode) {
+              document.body.removeChild(msgDiv);
+            }
+          }, 300);
+        }, 3000);
+      }
+    });
+  </script>
 {% endblock %}
