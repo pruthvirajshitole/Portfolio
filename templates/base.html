@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>{% block title %}Portfolio{% endblock %}</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
@@ -201,6 +204,9 @@
       overflow: hidden;
       font-weight: 500;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      cursor: pointer;
     }
     
     nav a::before {
@@ -241,19 +247,60 @@
       .header-content {
         gap: 20px;
         padding: 0 20px;
+        flex-direction: column;
+        align-items: center;
       }
       
       .header-video video {
         opacity: 0.25;
+        width: 80px;
+        height: 60px;
       }
       
       nav {
         gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 15px;
       }
       
       nav a {
         padding: 8px 12px;
         font-size: 0.9rem;
+        min-width: 80px;
+        text-align: center;
+      }
+      
+      main {
+        padding: 20px 16px;
+      }
+      
+      .container {
+        padding: 0 16px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .header-content {
+        padding: 0 16px;
+      }
+      
+      nav {
+        gap: 6px;
+      }
+      
+      nav a {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+        min-width: 70px;
+      }
+      
+      main {
+        padding: 16px 12px;
+      }
+      
+      .container {
+        padding: 0 12px;
       }
     }
     
@@ -331,6 +378,9 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      cursor: pointer;
     }
     
     .footer-links a::before {
@@ -370,6 +420,28 @@
       .footer-links {
         justify-content: center;
         flex-wrap: wrap;
+        gap: 15px;
+      }
+      
+      .footer-links a {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      footer .container {
+        padding: 0 12px;
+        gap: 12px;
+      }
+      
+      .footer-links {
+        gap: 12px;
+      }
+      
+      .footer-links a {
+        padding: 5px 8px;
+        font-size: 0.85rem;
       }
     }
     
@@ -397,6 +469,20 @@
       pointer-events: none;
       z-index: 1;
       animation: floatCode 15s linear infinite;
+    }
+    
+    @media (max-width: 768px) {
+      .floating-code {
+        display: none;
+      }
+      
+      .binary-rain {
+        display: none;
+      }
+      
+      .cyber-lines {
+        display: none;
+      }
     }
     
     .floating-code:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }

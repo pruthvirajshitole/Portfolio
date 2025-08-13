@@ -409,79 +409,7 @@
       100% { transform: rotate(360deg); }
     }
     
-    .skills-section {
-      background: linear-gradient(135deg, #1a1a1a 0%, #0f0f23 100%);
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 8px 32px rgba(0,255,65,0.1), inset 0 0 0 1px rgba(0,255,65,0.2);
-      border: 1px solid #00ff41;
-      margin-top: 40px;
-    }
-    
-    .skills-title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #00ff41;
-      margin: 0 0 30px;
-      text-align: center;
-      position: relative;
-      font-family: 'Orbitron', monospace;
-      text-shadow: 0 0 15px #00ff41;
-    }
-    
-    .skills-title::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, #00ff41, #00ff88, #00ff41);
-      border-radius: 2px;
-      box-shadow: 0 0 10px #00ff41;
-    }
-    
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-    
-    .skill-item {
-      background: linear-gradient(135deg, #0f0f23 0%, #1a1a1a 100%);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      border: 1px solid #00ff41;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 20px rgba(0,255,65,0.1);
-    }
-    
-    .skill-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(0,255,65,0.3), 0 0 20px rgba(0,255,65,0.2);
-      border-color: #00ff88;
-    }
-    
-    .skill-icon {
-      font-size: 2rem;
-      margin-bottom: 12px;
-      display: block;
-      animation: skillIconFloat 3s ease-in-out infinite;
-    }
-    
-    @keyframes skillIconFloat {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-3px); }
-    }
-    
-    .skill-name {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #00ff88;
-      font-family: 'Orbitron', monospace;
-    }
+
     
     .education-title {
       font-size: 1.4rem;
@@ -563,54 +491,7 @@
       text-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
     }
     
-    .skills-section {
-      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-      border-radius: 16px;
-      padding: 32px;
-      margin: 40px 0;
-      text-align: center;
-    }
-    
-    .skills-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 24px;
-    }
-    
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 16px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    
-    .skill-item {
-      background: white;
-      border-radius: 12px;
-      padding: 16px 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      transition: all 0.3s ease;
-      border: 1px solid #e2e8f0;
-    }
-    
-    .skill-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-    }
-    
-    .skill-icon {
-      font-size: 1.5rem;
-      margin-bottom: 8px;
-      display: block;
-    }
-    
-    .skill-name {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #475569;
-    }
+
     
     @keyframes fadeInUp {
       to {
@@ -638,7 +519,7 @@
         left: 8px;
         right: auto;
       }
-      .skills-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
+
     }
     
     /* Missing animations */
@@ -766,42 +647,6 @@
       </div>
   </div>
 
-    <div class="skills-section">
-      <h2 class="skills-title">Technical Skills & Competencies</h2>
-      <div class="skills-grid">
-        <div class="skill-item">
-          <span class="skill-icon">🐍</span>
-          <div class="skill-name">Python</div>
-        </div>
-        <div class="skill-item">
-          <span class="skill-icon">🤖</span>
-          <div class="skill-name">Machine Learning</div>
-        </div>
-        <div class="skill-item">
-          <span class="skill-icon">📊</span>
-          <div class="skill-name">Data Analysis</div>
-        </div>
-        <div class="skill-item">
-          <span class="skill-icon">🗄️</span>
-          <div class="skill-name">SQL</div>
-        </div>
-        <div class="skill-item">
-          <span class="skill-icon">📈</span>
-          <div class="skill-name">Statistics</div>
-        </div>
-        <div class="skill-item">
-          <span class="skill-icon">🔍</span>
-          <div class="skill-name">Deep Learning</div>
-        </div>
-        <div class="skill-item">
-          <span class="skill-icon">💻</span>
-          <div class="skill-name">Programming</div>
-        </div>
-        <div class="skill-item">
-          <span class="skill-icon">📱</span>
-          <div class="skill-name">Web Development</div>
-        </div>
-      </div>
-    </div>
+
   </div>
 {% endblock %}
