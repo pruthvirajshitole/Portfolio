@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Contact — Pruthviraj Shitole{% endblock %}
 
@@ -7,13 +8,17 @@
     .hero-section {
       background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #0a0a0a 50%, #1a1a1a 75%, #0a0a0a 100%);
       color: #ffffff;
-      padding: 100px 0;
+      padding: clamp(60px, 12vw, 100px) 0;
       text-align: center;
-      margin: -40px -32px 50px;
+      margin: clamp(-20px, -5vw, -40px) clamp(-16px, -4vw, -32px) clamp(25px, 6vw, 50px);
       position: relative;
       overflow: hidden;
       border-bottom: 1px solid rgba(255,255,255,0.1);
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      min-height: 40vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
     .hero-section::before {
@@ -24,30 +29,12 @@
       right: 0;
       bottom: 0;
       background: 
-        radial-gradient(circle at 20% 80%, rgba(255, 100, 200, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(100, 200, 255, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(200, 255, 100, 0.2) 0%, transparent 50%);
+        radial-gradient(circle at 20% 80%, rgba(255, 100, 200, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(100, 200, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(200, 255, 100, 0.15) 0%, transparent 50%);
       opacity: 1;
-      animation: gradientMove 13s ease-in-out infinite;
-    }
-    
-    @keyframes gradientMove {
-      0%, 100% { 
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-      }
-      25% { 
-        transform: translate(-18px, -18px) scale(1.08);
-        opacity: 0.8;
-      }
-      50% { 
-        transform: translate(18px, 18px) scale(0.95);
-        opacity: 1;
-      }
-      75% { 
-        transform: translate(-12px, 12px) scale(1.04);
-        opacity: 0.9;
-      }
+      animation: gradientMove 15s ease-in-out infinite;
+      will-change: transform;
     }
     
     /* Communication grid pattern */
@@ -59,24 +46,21 @@
       right: 0;
       bottom: 0;
       background-image: 
-        linear-gradient(90deg, rgba(255, 100, 200, 0.03) 1px, transparent 1px),
-        linear-gradient(rgba(255, 100, 200, 0.03) 1px, transparent 1px);
-      background-size: 90px 90px;
-      animation: gridMove 19s linear infinite;
+        linear-gradient(90deg, rgba(255, 100, 200, 0.02) 1px, transparent 1px),
+        linear-gradient(rgba(255, 100, 200, 0.02) 1px, transparent 1px);
+      background-size: clamp(60px, 8vw, 90px);
+      animation: gridMove 25s linear infinite;
+      will-change: transform;
     }
     
-    @keyframes gridMove {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(90px, 90px); }
-    }
-    
-    /* Floating communication symbols */
+    /* Floating communication symbols - optimized */
     .hero-section .communication-symbol {
       position: absolute;
-      color: rgba(255, 100, 200, 0.9);
-      font-size: 1.7rem;
-      animation: floatCommunication 7s ease-in-out infinite;
-      text-shadow: 0 0 12px rgba(255, 100, 200, 0.6);
+      color: rgba(255, 100, 200, 0.8);
+      font-size: clamp(1.2rem, 3vw, 1.7rem);
+      animation: floatCommunication 9s ease-in-out infinite;
+      text-shadow: 0 0 clamp(8px, 2vw, 12px) rgba(255, 100, 200, 0.5);
+      will-change: transform;
     }
     
     .hero-section .communication-symbol:nth-child(1) {
@@ -84,576 +68,608 @@
       top: 22%;
       left: 16%;
       animation-delay: 0s;
-      animation-duration: 9s;
+      animation-duration: 11s;
     }
     
     .hero-section .communication-symbol:nth-child(2) {
       content: '📧';
       top: 62%;
       left: 84%;
-      animation-delay: 2s;
-      animation-duration: 8s;
+      animation-delay: 3s;
+      animation-duration: 10s;
     }
     
     .hero-section .communication-symbol:nth-child(3) {
       content: '📱';
       top: 78%;
       left: 18%;
-      animation-delay: 4s;
-      animation-duration: 10s;
+      animation-delay: 6s;
+      animation-duration: 12s;
     }
     
     .hero-section .communication-symbol:nth-child(4) {
       content: '🌐';
-      top: 38%;
+      top: 35%;
       left: 82%;
       animation-delay: 1s;
-      animation-duration: 7s;
+      animation-duration: 9.5s;
     }
     
     .hero-section .communication-symbol:nth-child(5) {
-      content: '📡';
-      top: 58%;
-      left: 48%;
-      animation-delay: 3s;
+      content: '📞';
+      top: 85%;
+      left: 75%;
+      animation-delay: 4s;
       animation-duration: 8.5s;
     }
     
-    @keyframes floatCommunication {
-      0%, 100% { 
-        transform: translateY(0px) translateX(0px) rotate(0deg);
-        opacity: 0.9;
-      }
-      25% { 
-        transform: translateY(-24px) translateX(13px) rotate(7deg);
-        opacity: 1;
-      }
-      50% { 
-        transform: translateY(-42px) translateX(-11px) rotate(-6deg);
-        opacity: 0.8;
-      }
-      75% { 
-        transform: translateY(-19px) translateX(17px) rotate(4deg);
-        opacity: 1;
-      }
+    .hero-section .communication-symbol:nth-child(6) {
+      content: '✉️';
+      top: 15%;
+      left: 75%;
+      animation-delay: 7s;
+      animation-duration: 10.5s;
     }
     
-    /* Floating network nodes */
-    .hero-section .network-node {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 100, 200, 0.2) 0%, transparent 70%);
-      animation: moveNetwork 13s linear infinite;
-      box-shadow: 0 0 18px rgba(255, 100, 200, 0.4);
-    }
-    
-    .hero-section .network-node:nth-child(6) {
-      width: 85px;
-      height: 85px;
-      top: -42px;
-      left: -42px;
-      animation-delay: 0s;
-      animation-duration: 17s;
-    }
-    
-    .hero-section .network-node:nth-child(7) {
-      width: 60px;
-      height: 60px;
-      top: 50%;
-      right: -30px;
-      animation-delay: 4s;
-      animation-duration: 21s;
-    }
-    
-    .hero-section .network-node:nth-child(8) {
-      width: 40px;
-      height: 40px;
-      bottom: -20px;
-      left: 42%;
-      animation-delay: 8s;
-      animation-duration: 15s;
-    }
-    
-    @keyframes moveNetwork {
-      0% { 
-        transform: translate(0, 0) rotate(0deg);
-        opacity: 0.6;
-      }
-      25% { 
-        transform: translate(85px, 52px) rotate(90deg);
-        opacity: 0.9;
-      }
-      50% { 
-        transform: translate(52px, 85px) rotate(180deg);
-        opacity: 0.7;
-      }
-      75% { 
-        transform: translate(-52px, 68px) rotate(270deg);
-        opacity: 1;
-      }
-      100% { 
-        transform: translate(0, 0) rotate(360deg);
-        opacity: 0.6;
-      }
-    }
-    
-    /* Connection lines */
+    /* Moving connection lines */
     .hero-section .connection-line {
       position: absolute;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 100, 200, 0.6), transparent);
-      animation: connectionLine 6.5s ease-in-out infinite;
-      box-shadow: 0 0 16px rgba(255, 100, 200, 0.4);
+      background: linear-gradient(90deg, transparent, rgba(255, 100, 200, 0.4), transparent);
+      animation: connectionFlow 8s ease-in-out infinite;
+      box-shadow: 0 0 clamp(8px, 2vw, 12px) rgba(255, 100, 200, 0.3);
+      will-change: transform;
     }
     
-    .hero-section .connection-line:nth-child(9) {
-      width: 270px;
-      top: 35%;
-      left: -270px;
-      animation-delay: 0s;
-    }
-    
-    .hero-section .connection-line:nth-child(10) {
-      width: 230px;
-      top: 65%;
-      right: -230px;
-      animation-delay: 3s;
-    }
-    
-    @keyframes connectionLine {
-      0%, 100% { 
-        transform: translateX(0);
-        opacity: 0;
-      }
-      50% { 
-        transform: translateX(540px);
-        opacity: 1;
-      }
-    }
+    .hero-section .connection-line:nth-child(7) { width: clamp(150px, 25vw, 200px); top: 30%; left: -200px; animation-delay: 0s; }
+    .hero-section .connection-line:nth-child(8) { width: clamp(120px, 20vw, 160px); top: 70%; right: -160px; animation-delay: 4s; }
     
     .hero-content {
       position: relative;
       z-index: 1;
+      animation: fadeInUp 1.2s ease-out;
+      max-width: clamp(600px, 80vw, 800px);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 40px);
     }
     
     .hero-title {
-      font-size: 2.5rem;
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
       font-weight: 700;
-      margin: 0 0 16px;
-      text-shadow: 0 0 25px #00ff41, 0 0 50px #00ff41;
-      font-family: 'Orbitron', monospace;
-      animation: glitch 2s infinite;
-      position: relative;
-    }
-    
-    .hero-title::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0;
-      height: 0;
-      opacity: 0;
+      margin: 0 0 clamp(15px, 3vw, 20px);
+      text-shadow: 0 0 clamp(15px, 3vw, 25px) rgba(255,255,255,0.3);
+      letter-spacing: 0.05em;
+      animation: slideInLeft 1.4s ease-out 0.3s both;
+      color: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      text-transform: none;
+      line-height: 1.1;
     }
     
     .hero-subtitle {
-      font-size: 1.2rem;
-      opacity: 0.9;
-      max-width: 600px;
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      opacity: 0.8;
+      max-width: clamp(500px, 70vw, 600px);
       margin: 0 auto;
-      color: #00ff88;
-      font-family: 'Orbitron', monospace;
+      line-height: 1.6;
+      animation: slideInRight 1.4s ease-out 0.5s both;
+      color: rgba(255,255,255,0.8);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
     
-    .content-container {
+    .main-content {
       max-width: 1200px;
       margin: 0 auto;
+      padding: clamp(15px, 4vw, 20px);
+      background: transparent;
     }
     
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
-      margin-bottom: 60px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    .contact-info {
-      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 8px 32px rgba(16, 185, 129, 0.15), inset 0 0 0 1px rgba(16, 185, 129, 0.2);
-      border: 2px solid #10b981;
+    .contact-section {
+      background: rgba(255,255,255,0.02);
+      backdrop-filter: blur(20px);
+      border-radius: clamp(12px, 3vw, 16px);
+      padding: clamp(25px, 5vw, 35px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.1);
       position: relative;
       overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      max-width: clamp(400px, 60vw, 500px);
+      margin: 0 auto clamp(30px, 6vw, 50px);
+      animation: fadeInUp 1.2s ease-out 0.8s both;
     }
     
-    .contact-info::before {
+    .contact-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.03);
+    }
+    
+    .contact-section::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #10b981, #34d399, #10b981);
-      animation: shimmer 3s ease-in-out infinite;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
     }
     
-
-    
     .section-title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #10b981;
-      margin: 0 0 24px;
+      font-size: clamp(1.4rem, 3.5vw, 1.8rem);
+      font-weight: 600;
+      color: #ffffff;
+      margin: 0 0 clamp(15px, 4vw, 20px);
+      text-align: center;
+      position: relative;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      text-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+      text-shadow: none;
+      line-height: 1.2;
     }
     
     .section-title::after {
       content: '';
       position: absolute;
       bottom: -8px;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, #00ff41, #00ff88, #00ff41);
-      border-radius: 2px;
-      box-shadow: 0 0 10px #00ff41;
-    }
-    
-    .contact-methods {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: clamp(30px, 6vw, 40px);
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+      border-radius: 1px;
     }
     
     .contact-method {
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-bottom: 24px;
-      padding: 16px;
-      background: rgba(16, 185, 129, 0.05);
-      border-radius: 12px;
-      border: 1px solid rgba(16, 185, 129, 0.2);
+      gap: clamp(12px, 3vw, 16px);
+      margin-bottom: clamp(15px, 4vw, 20px);
+      padding: clamp(12px, 3vw, 16px);
+      background: rgba(255,255,255,0.02);
+      border-radius: clamp(8px, 2vw, 12px);
+      border: 1px solid rgba(255,255,255,0.05);
       transition: all 0.3s ease;
-    }
-    
-    .contact-method::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0,255,65,0.2), transparent);
-      transition: left 0.6s ease;
-    }
-    
-    .contact-method:hover::before {
-      left: 100%;
     }
     
     .contact-method:hover {
-      background: rgba(16, 185, 129, 0.1);
-      border-color: #34d399;
-      transform: translateX(8px);
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.1);
+      transform: translateX(5px);
     }
     
     .contact-icon {
-      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(40px, 8vw, 48px);
+      height: clamp(40px, 8vw, 48px);
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    
+    .contact-icon img {
+      width: clamp(20px, 4vw, 24px);
+      height: clamp(20px, 4vw, 24px);
+      filter: invert(1) brightness(0.8);
+      transition: all 0.3s ease;
+      object-fit: contain;
+    }
+    
+    .contact-method:hover .contact-icon img {
+      filter: invert(1) brightness(1) sepia(1) saturate(5) hue-rotate(140deg);
+      transform: scale(1.1);
+    }
+    
+    .contact-details {
+      flex: 1;
+    }
+    
+    .contact-label {
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 4px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .contact-value {
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      color: #ffffff;
+      font-weight: 400;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .contact-value a {
       color: #10b981;
-      text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
-    }
-    
-    .contact-details h4 {
-      color: #34d399;
-      margin: 0 0 4px;
-      font-weight: 600;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-    
-    .contact-details p {
-      color: #e2e8f0;
-      margin: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-    
-    .contact-details a {
-      color: #34d399;
       text-decoration: none;
       transition: all 0.3s ease;
-      text-shadow: 0 0 8px rgba(16, 185, 129, 0.2);
     }
     
-    .contact-details a:hover {
-      color: #10b981;
-      text-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+    .contact-value a:hover {
+      color: #34d399;
+      text-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
     }
     
-    .social-links {
-      margin-top: 32px;
+    .resume-section {
+      background: rgba(255,255,255,0.02);
+      backdrop-filter: blur(20px);
+      border-radius: clamp(12px, 3vw, 16px);
+      padding: clamp(25px, 5vw, 35px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      margin-bottom: clamp(30px, 6vw, 50px);
+      animation: fadeInUp 1.2s ease-out 1s both;
     }
     
-    .social-title {
-      color: #10b981;
-      font-size: 1.2rem;
+    .resume-button {
+      display: inline-flex;
+      align-items: center;
+      gap: clamp(8px, 2vw, 12px);
+      background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+      color: #ffffff;
+      border: none;
+      padding: clamp(14px, 3vw, 18px) clamp(24px, 6vw, 32px);
+      border-radius: clamp(8px, 2vw, 12px);
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
       font-weight: 600;
-      margin: 0 0 16px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+      min-width: clamp(180px, 45vw, 220px);
+      justify-content: center;
+    }
+    
+    .resume-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    }
+    
+    .resume-button:active {
+      transform: translateY(0);
+    }
+    
+    .resume-icon {
+      width: clamp(20px, 4vw, 24px);
+      height: clamp(20px, 4vw, 24px);
+      filter: brightness(0) invert(1);
+    }
+    
+    .social-section {
+      background: rgba(255,255,255,0.02);
+      backdrop-filter: blur(20px);
+      border-radius: clamp(12px, 3vw, 16px);
+      padding: clamp(25px, 5vw, 35px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      margin-bottom: clamp(30px, 6vw, 50px);
+      animation: fadeInUp 1.2s ease-out 1.2s both;
     }
     
     .social-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(clamp(120px, 25vw, 150px), 1fr));
+      gap: clamp(15px, 3vw, 20px);
+      margin-top: clamp(20px, 5vw, 25px);
     }
     
     .social-item {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 12px;
-      padding: 16px;
-      background: rgba(16, 185, 129, 0.05);
-      border-radius: 12px;
-      border: 1px solid rgba(16, 185, 129, 0.2);
+      gap: clamp(8px, 2vw, 12px);
+      padding: clamp(15px, 3vw, 20px);
+      background: rgba(255,255,255,0.02);
+      border-radius: clamp(8px, 2vw, 12px);
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       text-decoration: none;
-      transition: all 0.3s ease;
       color: inherit;
     }
     
-    .social-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0,255,65,0.2), transparent);
-      transition: left 0.6s ease;
-    }
-    
-    .social-item:hover::before {
-      left: 100%;
-    }
-    
     .social-item:hover {
-      background: rgba(16, 185, 129, 0.1);
-      border-color: #34d399;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     }
     
     .social-icon {
-      font-size: 1.3rem;
-      color: #10b981;
-      text-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(48px, 10vw, 56px);
+      height: clamp(48px, 10vw, 56px);
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
     }
     
-    .social-name {
-      color: #34d399;
+    .social-icon img {
+      width: clamp(24px, 5vw, 28px);
+      height: clamp(24px, 5vw, 28px);
+      filter: invert(1) brightness(0.8);
+      transition: all 0.3s ease;
+      object-fit: contain;
+    }
+    
+    .social-item:hover .social-icon img {
+      filter: invert(1) brightness(1) sepia(1) saturate(5) hue-rotate(140deg);
+      transform: scale(1.1);
+    }
+    
+    .social-label {
+      font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+      color: rgba(255,255,255,0.8);
       font-weight: 500;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
     
-
-    
-    .additional-info {
-      background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
-      border-radius: 20px;
-      padding: 40px;
-      text-align: center;
-      margin-bottom: 40px;
-      border: 2px solid #00ff41;
-      position: relative;
-      overflow: hidden;
+    /* Optimized animations for better performance */
+    @keyframes gradientMove {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+      25% { transform: translate(clamp(-15px, -2.5vw, -18px), clamp(-15px, -2.5vw, -18px)) scale(1.05); opacity: 0.8; }
+      50% { transform: translate(clamp(15px, 2.5vw, 18px), clamp(15px, 2.5vw, 18px)) scale(0.98); opacity: 1; }
+      75% { transform: translate(clamp(-10px, -2vw, -12px), clamp(10px, 2vw, 12px)) scale(1.02); opacity: 0.9; }
     }
     
-    .additional-info::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0,255,65,0.2), transparent);
-      transition: left 0.6s ease;
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(clamp(60px, 8vw, 90px), clamp(60px, 8vw, 90px)); }
     }
     
-    .additional-info:hover::before {
-      left: 100%;
+    @keyframes floatCommunication {
+      0%, 100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.8; }
+      25% { transform: translateY(clamp(-15px, -3vw, -20px)) translateX(clamp(8px, 1.5vw, 12px)) scale(1.1); opacity: 1; }
+      50% { transform: translateY(clamp(-25px, -4vw, -30px)) translateX(clamp(-6px, -1vw, -8px)) scale(0.9); opacity: 0.7; }
+      75% { transform: translateY(clamp(-12px, -2vw, -15px)) translateX(clamp(10px, 1.8vw, 14px)) scale(1.05); opacity: 1; }
     }
     
-    .info-title {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: #00ff41;
-      margin: 0 0 16px;
-      font-family: 'Orbitron', monospace;
-      text-shadow: 0 0 15px #00ff41;
+    @keyframes connectionFlow {
+      0%, 100% { transform: translateX(0); opacity: 0; }
+      50% { transform: translateX(clamp(300px, 50vw, 400px)); opacity: 1; }
     }
     
-    .info-text {
-      font-size: 1.1rem;
-      color: #00ff88;
-      line-height: 1.6;
-      max-width: 600px;
-      margin: 0 auto;
-      font-family: 'Orbitron', monospace;
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(clamp(30px, 6vw, 50px)); }
+      to { opacity: 1; transform: translateY(0); }
     }
     
-    .availability-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, #00ff41, #00ff88);
-      color: #000000;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      margin-top: 16px;
-      box-shadow: 0 2px 8px rgba(0,255,65,0.4);
-      font-family: 'Orbitron', monospace;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      border: 2px solid #00ff41;
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(clamp(-30px, -6vw, -50px)); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(clamp(30px, 6vw, 50px)); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    /* Enhanced responsive design with better aspect ratios */
+    @media (max-width: 1024px) {
+      .hero-section {
+        min-height: 35vh;
+        padding: clamp(50px, 10vw, 80px) 0;
+      }
+      
+      .hero-content {
+        padding: 0 clamp(15px, 4vw, 30px);
+      }
+      
+      .contact-section, .resume-section, .social-section {
+        padding: clamp(20px, 5vw, 30px);
+      }
     }
     
     @media (max-width: 768px) {
-      .hero-title { font-size: 2rem; }
-      .hero-subtitle { font-size: 1rem; }
-      .contact-grid { grid-template-columns: 1fr; gap: 30px; }
-      .contact-info { padding: 30px 20px; }
-      .section-title { font-size: 1.5rem; }
-      .social-grid { grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); }
+      .hero-section {
+        min-height: 30vh;
+        padding: clamp(40px, 8vw, 60px) 0;
+        margin: clamp(-10px, -3vw, -20px) clamp(-8px, -2vw, -16px) clamp(20px, 5vw, 30px);
+      }
+      
+      .hero-section::before,
+      .hero-section::after {
+        animation: none;
+      }
+      
+      .communication-symbol,
+      .connection-line {
+        display: none;
+      }
+      
+      .hero-content {
+        padding: 0 clamp(15px, 4vw, 25px);
+      }
+      
+      .main-content {
+        padding: 0;
+      }
+      
+      .contact-section {
+        max-width: 100%;
+        margin: 0 auto clamp(20px, 5vw, 30px);
+      }
+      
+      .social-grid {
+        grid-template-columns: repeat(auto-fit, minmax(clamp(100px, 30vw, 120px), 1fr));
+        gap: clamp(12px, 3vw, 15px);
+      }
+      
+      .contact-section, .resume-section, .social-section { 
+        padding: clamp(20px, 5vw, 25px); 
+        margin-bottom: clamp(20px, 5vw, 30px);
+      }
     }
     
-
-    
-    /* Missing animations */
-    @keyframes shimmer {
-      0%, 100% { transform: translateX(-100%); }
-      50% { transform: translateX(100%); }
+    @media (max-width: 480px) {
+      .hero-section {
+        min-height: 25vh;
+        padding: clamp(30px, 6vw, 45px) 0;
+        margin: clamp(-8px, -2vw, -16px) clamp(-6px, -1.5vw, -12px) clamp(15px, 4vw, 25px);
+      }
+      
+      .hero-content {
+        padding: 0 clamp(12px, 3vw, 20px);
+      }
+      
+      .contact-section, .resume-section, .social-section { 
+        padding: clamp(15px, 4vw, 20px); 
+        margin-bottom: clamp(15px, 4vw, 25px);
+      }
+      
+      .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: clamp(10px, 3vw, 12px);
+      }
+      
+      .resume-button { 
+        width: 100%;
+        max-width: clamp(200px, 80vw, 250px);
+      }
     }
     
-    @keyframes glitch {
-      0%, 100% { transform: translate(0); }
-      20% { transform: translate(-2px, 2px); }
-      40% { transform: translate(-2px, -2px); }
-      60% { transform: translate(2px, 2px); }
-      80% { transform: translate(2px, -2px); }
+    /* Landscape orientation optimization for mobile */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .hero-section {
+        min-height: 25vh;
+        padding: clamp(20px, 5vw, 30px) 0;
+      }
+      
+      .hero-title {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+        margin-bottom: clamp(10px, 2vw, 15px);
+      }
+      
+      .hero-subtitle {
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+      }
+      
+      .contact-section, .resume-section, .social-section {
+        padding: clamp(15px, 4vw, 25px);
+        margin-bottom: clamp(15px, 4vw, 25px);
+      }
     }
     
-
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+    /* High DPI displays optimization */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      .hero-section::before,
+      .hero-section::after,
+      .communication-symbol,
+      .connection-line {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+      }
     }
-
-
+    
+    /* Reduced motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-section::before,
+      .hero-section::after,
+      .communication-symbol,
+      .connection-line {
+        animation: none;
+      }
+      
+      .hero-content,
+      .contact-section,
+      .resume-section,
+      .social-section {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
   </style>
 {% endblock %}
 
 {% block content %}
   <div class="hero-section">
-    <!-- Animated background elements -->
     <div class="communication-symbol">💬</div>
     <div class="communication-symbol">📧</div>
     <div class="communication-symbol">📱</div>
     <div class="communication-symbol">🌐</div>
-    <div class="communication-symbol">📡</div>
-    <div class="network-node"></div>
-    <div class="network-node"></div>
-    <div class="network-node"></div>
+    <div class="communication-symbol">📞</div>
+    <div class="communication-symbol">✉️</div>
     <div class="connection-line"></div>
     <div class="connection-line"></div>
     
     <div class="hero-content">
       <h1 class="hero-title">Get In Touch</h1>
-      <p class="hero-subtitle">Let's discuss opportunities, collaborations, or just have a conversation about data science and technology</p>
+      <p class="hero-subtitle">Ready to collaborate? Let's discuss your next project or just say hello!</p>
     </div>
   </div>
 
-  <div class="content-container">
-    <div class="contact-grid">
-      <!-- Contact Information -->
-      <div class="contact-info">
-        <h2 class="section-title">Contact Information</h2>
-        <div class="contact-methods">
-          <div class="contact-method">
-            <span class="contact-icon">📱</span>
-            <div class="contact-details">
-              <h4>Phone</h4>
-              <p><a href="tel:+919916231077">+91 9916231077</a></p>
-            </div>
-          </div>
-          
-          <div class="contact-method">
-            <span class="contact-icon">✉️</span>
-            <div class="contact-details">
-              <h4>Email</h4>
-              <p><a href="mailto:pruthvirajgshitole@gmail.com">pruthvirajgshitole@gmail.com</a></p>
-            </div>
-          </div>
-          
-          <div class="contact-method">
-            <span class="contact-icon">📍</span>
-            <div class="contact-details">
-              <h4>Location</h4>
-              <p>Pune, Maharashtra, India</p>
-            </div>
-          </div>
-          
-          <div class="contact-method">
-            <span class="contact-icon">💼</span>
-            <div class="contact-details">
-              <h4>LinkedIn</h4>
-              <p><a href="https://www.linkedin.com/in/pruthviraj-shitole" target="_blank" rel="noopener noreferrer">pruthviraj-shitole</a></p>
-            </div>
-          </div>
+  <div class="main-content">
+    <div class="contact-section">
+      <h2 class="section-title">Contact Information</h2>
+      
+      <div class="contact-method">
+        <div class="contact-icon">
+          <img src="{% static 'images/logos/phone.svg' %}" alt="Phone" width="24" height="24">
         </div>
-        
-        <div class="social-links">
-          <h3 class="social-title">Connect With Me</h3>
-          <div class="social-grid">
-            <a href="https://github.com/pruthvirajshitole" target="_blank" rel="noopener noreferrer" class="social-item">
-              <span class="social-icon">🐙</span>
-              <div class="social-name">GitHub</div>
-            </a>
-            <a href="https://www.linkedin.com/in/pruthviraj-shitole" target="_blank" rel="noopener noreferrer" class="social-item">
-              <span class="social-icon">💼</span>
-              <div class="social-name">LinkedIn</div>
-            </a>
-            <a href="mailto:pruthvirajgshitole@gmail.com" class="social-item">
-              <span class="social-icon">📧</span>
-              <div class="social-name">Email</div>
-            </a>
-            <a href="tel:+919916231077" class="social-item">
-              <span class="social-icon">📞</span>
-              <div class="social-name">Call</div>
-            </a>
+        <div class="contact-details">
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">+91 9916231077</div>
+        </div>
+      </div>
+      
+      <div class="contact-method">
+        <div class="contact-icon">
+          <img src="{% static 'images/logos/email.svg' %}" alt="Email" width="24" height="24">
+        </div>
+        <div class="contact-details">
+          <div class="contact-label">Email</div>
+          <div class="contact-value">
+            <a href="pruthvirajgshitole@gmail.com">pruthvirajgshitole@gmail.com</a>
           </div>
         </div>
       </div>
-
-
+      
+      <div class="contact-method">
+        <div class="contact-icon">
+          <img src="{% static 'images/logos/location.svg' %}" alt="Location" width="24" height="24">
+        </div>
+        <div class="contact-details">
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Pune, Maharashtra, India</div>
+        </div>
+      </div>
     </div>
 
-    <!-- Additional Information -->
-    <div class="additional-info">
-      <h2 class="info-title">Let's Work Together</h2>
-      <p class="info-text">
-        I'm always interested in new opportunities, interesting projects, and meaningful collaborations. 
-        Whether you have a data analysis project, want to discuss AI/ML solutions, or just want to connect, 
-        I'd love to hear from you!
-      </p>
-      <div class="availability-badge">Available for Opportunities</div>
+    <div class="resume-section">
+      <h2 class="section-title">My Resume</h2>
+      <a href="{% static 'resume/My_resume.pdf' %}" download class="resume-button">
+        <svg class="resume-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+        </svg>
+        Download Resume
+      </a>
+    </div>
+
+    <div class="social-section">
+      <h2 class="section-title">Connect With Me</h2>
+      <div class="social-grid">
+        <a href="https://linkedin.com/in/pruthviraj-shitole" target="_blank" rel="noopener noreferrer" class="social-item">
+          <div class="social-icon">
+            <img src="{% static 'images/logos/linkedin.svg' %}" alt="LinkedIn" width="28" height="28">
+          </div>
+          <div class="social-label">LinkedIn</div>
+        </a>
+        
+        <a href="https://github.com/pruthviraj-shitole" target="_blank" rel="noopener noreferrer" class="social-item">
+          <div class="social-icon">
+            <img src="{% static 'images/logos/github.svg' %}" alt="GitHub" width="28" height="28">
+          </div>
+          <div class="social-label">GitHub</div>
+        </a>
+      </div>
     </div>
   </div>
-
-
 {% endblock %}

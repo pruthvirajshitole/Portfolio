@@ -7,13 +7,17 @@
     .hero-section {
       background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #0a0a0a 50%, #1a1a1a 75%, #0a0a0a 100%);
       color: #ffffff;
-      padding: 120px 0;
+      padding: clamp(80px, 15vw, 120px) 0;
       text-align: center;
-      margin: -40px -32px 60px;
+      margin: clamp(-20px, -5vw, -40px) clamp(-16px, -4vw, -32px) clamp(30px, 8vw, 60px);
       position: relative;
       overflow: hidden;
       border-bottom: 1px solid rgba(255,255,255,0.1);
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
     .hero-section::before {
@@ -24,30 +28,12 @@
       right: 0;
       bottom: 0;
       background: 
-        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.25) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.25) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.25) 0%, transparent 50%);
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
       opacity: 1;
-      animation: gradientMove 8s ease-in-out infinite;
-    }
-    
-    @keyframes gradientMove {
-      0%, 100% { 
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-      }
-      25% { 
-        transform: translate(-30px, -30px) scale(1.2);
-        opacity: 0.7;
-      }
-      50% { 
-        transform: translate(30px, 30px) scale(0.8);
-        opacity: 1;
-      }
-      75% { 
-        transform: translate(-20px, 20px) scale(1.1);
-        opacity: 0.8;
-      }
+      animation: gradientMove 12s ease-in-out infinite;
+      will-change: transform;
     }
     
     .hero-section::after {
@@ -58,278 +44,122 @@
       right: 0;
       bottom: 0;
       background-image: 
-        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px),
-        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 80px 80px;
-      animation: gridMove 12s linear infinite;
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: clamp(60px, 8vw, 80px);
+      animation: gridMove 20s linear infinite;
+      will-change: transform;
     }
     
-    @keyframes gridMove {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(80px, 80px); }
-    }
-    
-    /* Floating particles */
+    /* Floating particles - optimized for performance */
     .hero-section .particle {
       position: absolute;
-      width: 6px;
-      height: 6px;
-      background: rgba(255, 255, 255, 0.9);
+      width: clamp(4px, 1vw, 6px);
+      height: clamp(4px, 1vw, 6px);
+      background: rgba(255, 255, 255, 0.8);
       border-radius: 50%;
-      animation: floatParticle 4s ease-in-out infinite;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      animation: floatParticle 6s ease-in-out infinite;
+      box-shadow: 0 0 clamp(8px, 2vw, 10px) rgba(255, 255, 255, 0.6);
+      will-change: transform;
     }
     
-    .hero-section .particle:nth-child(1) {
-      top: 20%;
-      left: 10%;
-      animation-delay: 0s;
-      animation-duration: 6s;
-    }
+    .hero-section .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; animation-duration: 8s; }
+    .hero-section .particle:nth-child(2) { top: 60%; left: 80%; animation-delay: 2s; animation-duration: 7s; }
+    .hero-section .particle:nth-child(3) { top: 80%; left: 20%; animation-delay: 4s; animation-duration: 9s; }
+    .hero-section .particle:nth-child(4) { top: 30%; left: 70%; animation-delay: 1s; animation-duration: 8.5s; }
+    .hero-section .particle:nth-child(5) { top: 70%; left: 40%; animation-delay: 3s; animation-duration: 7.5s; }
+    .hero-section .particle:nth-child(6) { top: 40%; left: 90%; animation-delay: 5s; animation-duration: 6.5s; }
     
-    .hero-section .particle:nth-child(2) {
-      top: 60%;
-      left: 80%;
-      animation-delay: 1s;
-      animation-duration: 5s;
-    }
-    
-    .hero-section .particle:nth-child(3) {
-      top: 80%;
-      left: 20%;
-      animation-delay: 2s;
-      animation-duration: 7s;
-    }
-    
-    .hero-section .particle:nth-child(4) {
-      top: 30%;
-      left: 70%;
-      animation-delay: 0.5s;
-      animation-duration: 6.5s;
-    }
-    
-    .hero-section .particle:nth-child(5) {
-      top: 70%;
-      left: 40%;
-      animation-delay: 1.5s;
-      animation-duration: 5.5s;
-    }
-    
-    .hero-section .particle:nth-child(6) {
-      top: 40%;
-      left: 90%;
-      animation-delay: 2.5s;
-      animation-duration: 4.5s;
-    }
-    
-    @keyframes floatParticle {
-      0%, 100% { 
-        transform: translateY(0px) translateX(0px) scale(1);
-        opacity: 0.9;
-      }
-      25% { 
-        transform: translateY(-30px) translateX(15px) scale(1.3);
-        opacity: 1;
-      }
-      50% { 
-        transform: translateY(-50px) translateX(-10px) scale(0.7);
-        opacity: 0.8;
-      }
-      75% { 
-        transform: translateY(-25px) translateX(20px) scale(1.2);
-        opacity: 1;
-      }
-    }
-    
-    /* Moving orbs */
+    /* Moving orbs - optimized */
     .hero-section .orb {
       position: absolute;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-      animation: moveOrb 12s linear infinite;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+      animation: moveOrb 18s linear infinite;
+      box-shadow: 0 0 clamp(15px, 3vw, 20px) rgba(255, 255, 255, 0.2);
+      will-change: transform;
     }
     
-    .hero-section .orb:nth-child(7) {
-      width: 120px;
-      height: 120px;
-      top: -60px;
-      left: -60px;
-      animation-delay: 0s;
-      animation-duration: 15s;
-    }
+    .hero-section .orb:nth-child(7) { width: clamp(80px, 15vw, 120px); height: clamp(80px, 15vw, 120px); top: -60px; left: -60px; animation-delay: 0s; animation-duration: 20s; }
+    .hero-section .orb:nth-child(8) { width: clamp(60px, 12vw, 80px); height: clamp(60px, 12vw, 80px); top: 50%; right: -40px; animation-delay: 6s; animation-duration: 25s; }
+    .hero-section .orb:nth-child(9) { width: clamp(40px, 8vw, 60px); height: clamp(40px, 8vw, 60px); bottom: -30px; left: 30%; animation-delay: 12s; animation-duration: 18s; }
     
-    .hero-section .orb:nth-child(8) {
-      width: 80px;
-      height: 80px;
-      top: 50%;
-      right: -40px;
-      animation-delay: 3s;
-      animation-duration: 18s;
-    }
-    
-    .hero-section .orb:nth-child(9) {
-      width: 60px;
-      height: 60px;
-      bottom: -30px;
-      left: 30%;
-      animation-delay: 6s;
-      animation-duration: 12s;
-    }
-    
-    @keyframes moveOrb {
-      0% { 
-        transform: translate(0, 0) rotate(0deg);
-        opacity: 0.5;
-      }
-      25% { 
-        transform: translate(120px, 60px) rotate(90deg);
-        opacity: 0.8;
-      }
-      50% { 
-        transform: translate(60px, 120px) rotate(180deg);
-        opacity: 0.6;
-      }
-      75% { 
-        transform: translate(-60px, 90px) rotate(270deg);
-        opacity: 0.9;
-      }
-      100% { 
-        transform: translate(0, 0) rotate(360deg);
-        opacity: 0.5;
-      }
-    }
-    
-    /* Glowing lines */
+    /* Glowing lines - optimized */
     .hero-section .glow-line {
       position: absolute;
       height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-      animation: glowLine 4s ease-in-out infinite;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: glowLine 6s ease-in-out infinite;
+      box-shadow: 0 0 clamp(12px, 2.5vw, 15px) rgba(255, 255, 255, 0.3);
+      will-change: transform;
     }
     
-    .hero-section .glow-line:nth-child(10) {
-      width: 250px;
-      top: 25%;
-      left: -250px;
-      animation-delay: 0s;
-    }
-    
-    .hero-section .glow-line:nth-child(11) {
-      width: 200px;
-      top: 75%;
-      right: -200px;
-      animation-delay: 2s;
-    }
-    
-    @keyframes glowLine {
-      0%, 100% { 
-        transform: translateX(0);
-        opacity: 0;
-      }
-      50% { 
-        transform: translateX(500px);
-        opacity: 1;
-      }
-    }
+    .hero-section .glow-line:nth-child(10) { width: clamp(200px, 30vw, 250px); top: 25%; left: -250px; animation-delay: 0s; }
+    .hero-section .glow-line:nth-child(11) { width: clamp(150px, 25vw, 200px); top: 75%; right: -200px; animation-delay: 3s; }
     
     .hero-content {
       position: relative;
       z-index: 1;
-      animation: fadeInUp 1s ease-out;
-    }
-    
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      animation: fadeInUp 1.2s ease-out;
+      max-width: clamp(600px, 80vw, 800px);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 40px);
     }
     
     .hero-name {
-      font-size: 4.5rem;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
       font-weight: 700;
-      margin: 0 0 20px;
-      text-shadow: 0 0 30px rgba(255,255,255,0.3);
+      margin: 0 0 clamp(15px, 3vw, 20px);
+      text-shadow: 0 0 clamp(20px, 4vw, 30px) rgba(255,255,255,0.3);
       letter-spacing: 0.05em;
-      animation: slideInLeft 1.2s ease-out 0.3s both;
+      animation: slideInLeft 1.4s ease-out 0.3s both;
       color: #ffffff;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       text-transform: none;
-    }
-    
-    @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      line-height: 1.1;
     }
     
     .hero-title {
-      font-size: 1.6rem;
+      font-size: clamp(1.2rem, 3.5vw, 1.6rem);
       opacity: 0.9;
-      margin-bottom: 24px;
+      margin-bottom: clamp(16px, 4vw, 24px);
       font-weight: 400;
-      animation: slideInRight 1.2s ease-out 0.5s both;
+      animation: slideInRight 1.4s ease-out 0.5s both;
       color: rgba(255,255,255,0.8);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       text-shadow: none;
-    }
-    
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      line-height: 1.3;
     }
     
     .hero-subtitle {
-      font-size: 1.3rem;
+      font-size: clamp(1rem, 2.8vw, 1.3rem);
       opacity: 0.7;
-      max-width: 700px;
+      max-width: clamp(500px, 70vw, 700px);
       margin: 0 auto;
       line-height: 1.6;
-      animation: fadeIn 1.2s ease-out 0.7s both;
+      animation: fadeIn 1.4s ease-out 0.7s both;
       color: rgba(255,255,255,0.7);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
     
     .main-content {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 20px;
+      padding: clamp(15px, 4vw, 20px);
       background: transparent;
     }
     
     .summary-section {
       background: rgba(255,255,255,0.02);
       backdrop-filter: blur(20px);
-      border-radius: 16px;
-      padding: 60px;
+      border-radius: clamp(12px, 3vw, 16px);
+      padding: clamp(40px, 8vw, 60px);
       box-shadow: 0 8px 32px rgba(0,0,0,0.1);
       border: 1px solid rgba(255,255,255,0.1);
-      margin-bottom: 40px;
+      margin-bottom: clamp(25px, 6vw, 40px);
       position: relative;
       overflow: hidden;
-      animation: slideInUp 1s ease-out 0.8s both;
+      animation: slideInUp 1.2s ease-out 0.8s both;
     }
     
     .summary-section::before {
@@ -343,15 +173,16 @@
     }
     
     .section-title {
-      font-size: 2.2rem;
+      font-size: clamp(1.8rem, 4.5vw, 2.2rem);
       font-weight: 600;
       color: #ffffff;
-      margin: 0 0 30px;
+      margin: 0 0 clamp(20px, 5vw, 30px);
       text-align: center;
       position: relative;
-      animation: fadeInUp 1s ease-out 1s both;
+      animation: fadeInUp 1.2s ease-out 1s both;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       text-shadow: none;
+      line-height: 1.2;
     }
     
     .section-title::after {
@@ -360,207 +191,34 @@
       bottom: -12px;
       left: 50%;
       transform: translateX(-50%);
-      width: 60px;
+      width: clamp(40px, 8vw, 60px);
       height: 2px;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
       border-radius: 1px;
-      animation: expandWidth 1.5s ease-out 1.2s both;
-    }
-    
-    @keyframes expandWidth {
-      from { width: 0; }
-      to { width: 60px; }
+      animation: expandWidth 1.8s ease-out 1.2s both;
     }
     
     .summary-text {
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
       line-height: 1.8;
       color: rgba(255,255,255,0.8);
       text-align: center;
-      max-width: 800px;
-      margin: 0 auto 32px;
-      animation: fadeInUp 1s ease-out 1.1s both;
+      max-width: clamp(600px, 80vw, 800px);
+      margin: 0 auto clamp(20px, 5vw, 32px);
+      animation: fadeInUp 1.2s ease-out 1.1s both;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-    
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 24px;
-      margin-top: 32px;
-      align-items: stretch;
-    }
-    
-    .contact-item {
-      background: rgba(255,255,255,0.03);
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      padding: 28px 24px;
-      text-align: center;
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      animation: fadeInUp 1s ease-out 1.3s both;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 180px;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-      cursor: pointer;
-    }
-    
-    .contact-item:nth-child(1) { animation-delay: 1.3s; }
-    .contact-item:nth-child(2) { animation-delay: 1.4s; }
-    .contact-item:nth-child(3) { animation-delay: 1.5s; }
-    .contact-item:nth-child(4) { animation-delay: 1.6s; }
-    
-    .contact-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-      transition: left 0.6s ease;
-    }
-    
-    .contact-item:hover::before {
-      left: 100%;
-    }
-    
-    .contact-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-      border-color: rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.05);
-    }
-    
-    .contact-icon {
-      font-size: 2rem;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s ease;
-      min-height: 2rem;
-    }
-    
-    .phone-logo {
-      width: 2rem;
-      height: 2rem;
-      color: #10b981;
-      transition: all 0.3s ease;
-      display: block;
-    }
-    
-    .email-logo {
-      width: 2rem;
-      height: 2rem;
-      color: #f59e0b;
-      transition: all 0.3s ease;
-      display: block;
-    }
-    
-    .location-logo {
-      width: 2rem;
-      height: 2rem;
-      color: #ef4444;
-      transition: all 0.3s ease;
-      display: block;
-    }
-    
-    .linkedin-logo {
-      width: 2rem;
-      height: 2rem;
-      color: #0077b5;
-      transition: all 0.3s ease;
-      display: block;
-    }
-    
-    .contact-item:hover .contact-icon {
-      transform: scale(1.1);
-    }
-    
-    .contact-item:hover .phone-logo {
-      color: #059669;
-      transform: scale(1.1);
-    }
-    
-    .contact-item:hover .email-logo {
-      color: #d97706;
-      transform: scale(1.1);
-    }
-    
-    .contact-item:hover .location-logo {
-      color: #dc2626;
-      transform: scale(1.1);
-    }
-    
-    .contact-item:hover .linkedin-logo {
-      color: #005885;
-      transform: scale(1.1);
-    }
-    
-    .contact-label {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 12px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-    
-    .contact-value {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.9);
-      font-weight: 500;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      line-height: 1.4;
-    }
-    
-    .contact-value a {
-      color: #ffffff;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      position: relative;
-      text-shadow: none;
-    }
-    
-    .contact-value a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: rgba(255,255,255,0.8);
-      transition: width 0.3s ease;
-    }
-    
-    .contact-value a:hover::after {
-      width: 100%;
-    }
-    
-    .contact-value a:hover {
-      color: rgba(255,255,255,1);
     }
     
     .welcome-section {
       background: rgba(255,255,255,0.02);
       backdrop-filter: blur(20px);
-      border-radius: 16px;
-      padding: 60px;
+      border-radius: clamp(12px, 3vw, 16px);
+      padding: clamp(40px, 8vw, 60px);
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: clamp(25px, 6vw, 40px);
       position: relative;
       overflow: hidden;
-      animation: slideInUp 1s ease-out 1.7s both;
+      animation: slideInUp 1.2s ease-out 1.7s both;
       border: 1px solid rgba(255,255,255,0.1);
       box-shadow: 0 8px 32px rgba(0,0,0,0.1);
     }
@@ -573,27 +231,28 @@
       right: 0;
       bottom: 0;
       background: 
-        radial-gradient(circle at 30% 70%, rgba(120, 119, 198, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 70% 30%, rgba(255, 119, 198, 0.05) 0%, transparent 50%);
+        radial-gradient(circle at 30% 70%, rgba(120, 119, 198, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(255, 119, 198, 0.03) 0%, transparent 50%);
       opacity: 0.8;
     }
     
     .welcome-title {
-      font-size: 2rem;
+      font-size: clamp(1.6rem, 4vw, 2rem);
       font-weight: 600;
       color: #ffffff;
-      margin: 0 0 20px;
+      margin: 0 0 clamp(15px, 4vw, 20px);
       position: relative;
       z-index: 1;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       text-shadow: none;
+      line-height: 1.3;
     }
     
     .welcome-text {
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
       color: rgba(255,255,255,0.8);
       line-height: 1.6;
-      max-width: 600px;
+      max-width: clamp(500px, 70vw, 600px);
       margin: 0 auto;
       position: relative;
       z-index: 1;
@@ -602,8 +261,8 @@
     
     .cta-section {
       text-align: center;
-      margin: 40px 0;
-      animation: fadeIn 1s ease-out 1.9s both;
+      margin: clamp(25px, 6vw, 40px) 0;
+      animation: fadeIn 1.2s ease-out 1.9s both;
     }
     
     .cta-button {
@@ -611,12 +270,12 @@
       background: rgba(255,255,255,0.1);
       backdrop-filter: blur(10px);
       color: #ffffff;
-      padding: 18px 36px;
-      border-radius: 12px;
+      padding: clamp(14px, 3vw, 18px) clamp(28px, 6vw, 36px);
+      border-radius: clamp(8px, 2vw, 12px);
       text-decoration: none;
       font-weight: 500;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       box-shadow: 0 4px 16px rgba(0,0,0,0.1);
       position: relative;
       overflow: hidden;
@@ -628,6 +287,7 @@
       touch-action: manipulation;
       cursor: pointer;
       user-select: none;
+      min-width: clamp(200px, 50vw, 250px);
     }
     
     .cta-button::before {
@@ -652,21 +312,85 @@
       border-color: rgba(255,255,255,0.3);
     }
     
-    @keyframes slideInUp {
-      from {
-        opacity: 0;
-        transform: translateY(50px);
+    /* Optimized animations for better performance */
+    @keyframes gradientMove {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+      25% { transform: translate(clamp(-20px, -3vw, -30px), clamp(-20px, -3vw, -30px)) scale(1.1); opacity: 0.7; }
+      50% { transform: translate(clamp(20px, 3vw, 30px), clamp(20px, 3vw, 30px)) scale(0.9); opacity: 1; }
+      75% { transform: translate(clamp(-15px, -2vw, -20px), clamp(15px, 2vw, 20px)) scale(1.05); opacity: 0.8; }
+    }
+    
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(clamp(60px, 8vw, 80px), clamp(60px, 8vw, 80px)); }
+    }
+    
+    @keyframes floatParticle {
+      0%, 100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.8; }
+      25% { transform: translateY(clamp(-20px, -4vw, -30px)) translateX(clamp(10px, 2vw, 15px)) scale(1.2); opacity: 1; }
+      50% { transform: translateY(clamp(-35px, -6vw, -50px)) translateX(clamp(-8px, -1.5vw, -10px)) scale(0.8); opacity: 0.7; }
+      75% { transform: translateY(clamp(-18px, -3vw, -25px)) translateX(clamp(15px, 2.5vw, 20px)) scale(1.1); opacity: 1; }
+    }
+    
+    @keyframes moveOrb {
+      0% { transform: translate(0, 0) rotate(0deg); opacity: 0.4; }
+      25% { transform: translate(clamp(80px, 15vw, 120px), clamp(40px, 8vw, 60px)) rotate(90deg); opacity: 0.7; }
+      50% { transform: translate(clamp(40px, 8vw, 60px), clamp(80px, 15vw, 120px)) rotate(180deg); opacity: 0.5; }
+      75% { transform: translate(clamp(-40px, -8vw, -60px), clamp(60px, 12vw, 90px)) rotate(270deg); opacity: 0.8; }
+      100% { transform: translate(0, 0) rotate(360deg); opacity: 0.4; }
+    }
+    
+    @keyframes glowLine {
+      0%, 100% { transform: translateX(0); opacity: 0; }
+      50% { transform: translateX(clamp(400px, 60vw, 500px)); opacity: 1; }
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(clamp(30px, 6vw, 50px)); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(clamp(-30px, -6vw, -50px)); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(clamp(30px, 6vw, 50px)); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes expandWidth {
+      from { width: 0; }
+      to { width: clamp(40px, 8vw, 60px); }
+    }
+    
+    /* Enhanced responsive design with better aspect ratios */
+    @media (max-width: 1024px) {
+      .hero-section {
+        min-height: 50vh;
+        padding: clamp(60px, 12vw, 100px) 0;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      
+      .hero-content {
+        padding: 0 clamp(15px, 4vw, 30px);
+      }
+      
+      .summary-section, .welcome-section {
+        padding: clamp(30px, 6vw, 50px);
       }
     }
     
     @media (max-width: 768px) {
       .hero-section {
-        padding: 80px 0;
-        margin: -20px -16px 40px;
+        min-height: 40vh;
+        padding: clamp(40px, 10vw, 60px) 0;
+        margin: clamp(-10px, -3vw, -20px) clamp(-8px, -2vw, -16px) clamp(20px, 5vw, 30px);
       }
       
       .hero-section::before,
@@ -680,169 +404,107 @@
         display: none;
       }
       
-      .hero-name { 
-        font-size: 2.8rem; 
-        line-height: 1.1;
-        margin-bottom: 20px;
-      }
-      .hero-title { 
-        font-size: 1.2rem; 
-        line-height: 1.3;
-        margin-bottom: 16px;
-      }
-      .hero-subtitle { 
-        font-size: 1rem; 
-        line-height: 1.4;
-        padding: 0 20px;
+      .hero-content {
+        padding: 0 clamp(15px, 4vw, 25px);
       }
       
       .main-content {
         padding: 0;
       }
       
-      .summary-section { 
-        padding: 30px 20px; 
-        margin-bottom: 30px;
-      }
-      
-      .section-title { 
-        font-size: 1.6rem; 
-        margin-bottom: 20px;
-      }
-      
-      .summary-text {
-        font-size: 1rem;
-        line-height: 1.6;
-      }
-      
-      .contact-grid { 
-        grid-template-columns: 1fr; 
-        gap: 20px;
-        margin-top: 24px;
-      }
-      
-      .contact-item {
-        min-height: 140px;
-        padding: 24px 20px;
-      }
-      
-      .contact-icon {
-        margin-bottom: 12px;
-      }
-      
-      .contact-label {
-        font-size: 0.85rem;
-        margin-bottom: 10px;
-      }
-      
-      .contact-value {
-        font-size: 1rem;
-      }
-      
-      .welcome-section { 
-        padding: 30px 20px; 
-        margin-bottom: 30px;
-      }
-      
-      .welcome-title {
-        font-size: 1.6rem;
-        margin-bottom: 16px;
-      }
-      
-      .welcome-text {
-        font-size: 1.1rem;
-        line-height: 1.5;
+      .summary-section, .welcome-section { 
+        padding: clamp(25px, 6vw, 35px) clamp(20px, 5vw, 25px); 
+        margin-bottom: clamp(20px, 5vw, 30px);
       }
       
       .cta-section { 
-        margin: 30px 0; 
+        margin: clamp(20px, 5vw, 30px) 0; 
       }
       
       .cta-button { 
-        padding: 16px 28px; 
-        font-size: 1rem; 
         width: 100%;
-        max-width: 300px;
+        max-width: clamp(250px, 70vw, 300px);
       }
     }
     
     @media (max-width: 480px) {
       .hero-section {
-        padding: 60px 0;
-        margin: -16px -12px 30px;
+        min-height: 35vh;
+        padding: clamp(30px, 8vw, 45px) 0;
+        margin: clamp(-8px, -2vw, -16px) clamp(-6px, -1.5vw, -12px) clamp(15px, 4vw, 25px);
       }
       
-      .hero-name { 
-        font-size: 2.2rem; 
-        line-height: 1.1;
-      }
-      .hero-title { 
-        font-size: 1.1rem; 
-        line-height: 1.3;
-      }
-      .hero-subtitle { 
-        font-size: 0.95rem; 
-        line-height: 1.4;
-        padding: 0 16px;
+      .hero-content {
+        padding: 0 clamp(12px, 3vw, 20px);
       }
       
-      .summary-section { 
-        padding: 24px 16px; 
-        margin-bottom: 24px;
-      }
-      
-      .section-title { 
-        font-size: 1.4rem; 
-        margin-bottom: 16px;
-      }
-      
-      .summary-text {
-        font-size: 0.95rem;
-        line-height: 1.6;
-      }
-      
-      .contact-grid { 
-        gap: 16px;
-        margin-top: 20px;
-      }
-      
-      .contact-item { 
-        padding: 20px 16px; 
-        min-height: 130px;
-      }
-      
-      .contact-icon {
-        margin-bottom: 10px;
-      }
-      
-      .contact-label {
-        font-size: 0.8rem;
-        margin-bottom: 8px;
-      }
-      
-      .contact-value {
-        font-size: 0.95rem;
-      }
-      
-      .welcome-section { 
-        padding: 24px 16px; 
-        margin-bottom: 24px;
-      }
-      
-      .welcome-title {
-        font-size: 1.4rem;
-        margin-bottom: 12px;
-      }
-      
-      .welcome-text {
-        font-size: 1rem;
-        line-height: 1.5;
+      .summary-section, .welcome-section { 
+        padding: clamp(20px, 5vw, 30px) clamp(15px, 4vw, 20px); 
+        margin-bottom: clamp(15px, 4vw, 25px);
       }
       
       .cta-button { 
-        padding: 14px 24px; 
-        font-size: 0.95rem; 
-        max-width: 280px;
+        max-width: clamp(220px, 80vw, 280px);
+        padding: clamp(12px, 3vw, 14px) clamp(20px, 5vw, 24px);
+      }
+    }
+    
+    /* Landscape orientation optimization for mobile */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .hero-section {
+        min-height: 30vh;
+        padding: clamp(20px, 5vw, 30px) 0;
+      }
+      
+      .hero-name {
+        font-size: clamp(2rem, 6vw, 3rem);
+        margin-bottom: clamp(10px, 2vw, 15px);
+      }
+      
+      .hero-title {
+        font-size: clamp(1rem, 2.5vw, 1.3rem);
+        margin-bottom: clamp(10px, 2vw, 15px);
+      }
+      
+      .hero-subtitle {
+        font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+      }
+      
+      .summary-section, .welcome-section {
+        padding: clamp(20px, 5vw, 30px);
+        margin-bottom: clamp(15px, 4vw, 25px);
+      }
+    }
+    
+    /* High DPI displays optimization */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      .hero-section::before,
+      .hero-section::after,
+      .particle,
+      .orb,
+      .glow-line {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+      }
+    }
+    
+    /* Reduced motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-section::before,
+      .hero-section::after,
+      .particle,
+      .orb,
+      .glow-line {
+        animation: none;
+      }
+      
+      .hero-content,
+      .summary-section,
+      .welcome-section,
+      .cta-section {
+        animation: none;
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
@@ -850,7 +512,6 @@
 
 {% block content %}
   <div class="hero-section">
-    <!-- Animated background elements -->
     <div class="particle"></div>
     <div class="particle"></div>
     <div class="particle"></div>
@@ -879,52 +540,6 @@
         and visual dashboards. Known for rapid learning, independent problem-solving, and a data-driven 
         mindset. Passionate about transforming complex data into actionable business intelligence.
       </p>
-      
-      <div class="contact-grid">
-        <div class="contact-item">
-          <span class="contact-icon">
-            <svg class="phone-logo" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-            </svg>
-          </span>
-          <div class="contact-label">Phone</div>
-          <div class="contact-value">+91 9916231077</div>
-        </div>
-        
-        <div class="contact-item">
-          <span class="contact-icon">
-            <svg class="email-logo" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>
-          </span>
-          <div class="contact-label">Email</div>
-          <div class="contact-value">
-            <a href="mailto:pruthvirajgshitole@gmail.com">pruthvirajgshitole@gmail.com</a>
-          </div>
-        </div>
-        
-        <div class="contact-item">
-          <span class="contact-icon">
-            <svg class="location-logo" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-            </svg>
-          </span>
-          <div class="contact-label">Location</div>
-          <div class="contact-value">Pune, India</div>
-        </div>
-        
-        <div class="contact-item">
-          <span class="contact-icon">
-            <svg class="linkedin-logo" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-          </span>
-          <div class="contact-label">LinkedIn</div>
-          <div class="contact-value">
-            <a href="https://www.linkedin.com/in/pruthviraj-shitole" target="_blank" rel="noopener noreferrer">View Profile</a>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="welcome-section">

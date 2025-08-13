@@ -13,4 +13,4 @@ class Contact(models.Model):
         ordering = ['-created_at']
     
     def __str__(self):
-        return f"{self.name} - {self.subject} ({self.created_at.strftime('%Y-%m-%d')})"
+        return f"{self.name} - {self.subject or 'No Subject'} ({self.created_at.strftime('%Y-%m-%d')})"
