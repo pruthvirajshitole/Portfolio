@@ -272,9 +272,12 @@
     
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 40px;
       margin-bottom: 60px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
     
     .contact-info {
@@ -298,26 +301,7 @@
       animation: shimmer 3s ease-in-out infinite;
     }
     
-    .contact-form {
-      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 8px 32px rgba(16, 185, 129, 0.15), inset 0 0 0 1px rgba(16, 185, 129, 0.2);
-      border: 2px solid #10b981;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .contact-form::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #10b981, #34d399, #10b981);
-      animation: shimmer 3s ease-in-out infinite;
-    }
+
     
     .section-title {
       font-size: 1.8rem;
@@ -476,66 +460,7 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
     
-    /* Form Styles */
-    .form-group {
-      margin-bottom: 24px;
-    }
-    
-    .form-label {
-      display: block;
-      color: #34d399;
-      margin-bottom: 8px;
-      font-weight: 600;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-    
-    .form-input, .form-textarea {
-      width: 100%;
-      padding: 12px 16px;
-      background: rgba(16, 185, 129, 0.05);
-      border: 2px solid rgba(16, 185, 129, 0.2);
-      border-radius: 8px;
-      color: #e2e8f0;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-    
-    .form-input:focus, .form-textarea:focus {
-      outline: none;
-      border-color: #10b981;
-      background: rgba(16, 185, 129, 0.1);
-      box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
-    }
-    
-    .form-textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-    
-    .submit-btn {
-      background: linear-gradient(135deg, #10b981, #34d399);
-      color: #ffffff;
-      padding: 14px 28px;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-    }
-    
-    .submit-btn:hover {
-      background: linear-gradient(135deg, #34d399, #10b981);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-    }
-    
-    .submit-btn:active {
-      transform: translateY(0);
-    }
+
     
     .additional-info {
       background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
@@ -601,45 +526,12 @@
       .hero-title { font-size: 2rem; }
       .hero-subtitle { font-size: 1rem; }
       .contact-grid { grid-template-columns: 1fr; gap: 30px; }
-      .contact-info, .contact-form { padding: 30px 20px; }
+      .contact-info { padding: 30px 20px; }
       .section-title { font-size: 1.5rem; }
       .social-grid { grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); }
     }
     
-    /* Animation for form inputs */
-    .form-input:focus + .form-label {
-      color: #00ff88;
-    }
-    
-    /* Success message styling */
-    .success-message {
-      background: linear-gradient(135deg, #000000, #0a0a0a);
-      color: #00ff41;
-      padding: 16px;
-      border-radius: 8px;
-      border: 2px solid #00ff41;
-      margin-bottom: 20px;
-      text-align: center;
-      font-weight: 500;
-      font-family: 'Orbitron', monospace;
-      text-shadow: 0 0 5px #00ff41;
-      box-shadow: 0 0 15px rgba(0,255,65,0.3);
-    }
-    
-    /* Error message styling */
-    .error-message {
-      background: linear-gradient(135deg, #000000, #0a0a0a);
-      color: #ff4141;
-      padding: 16px;
-      border-radius: 8px;
-      border: 2px solid #ff4141;
-      margin-bottom: 20px;
-      text-align: center;
-      font-weight: 500;
-      font-family: 'Orbitron', monospace;
-      text-shadow: 0 0 5px #ff4141;
-      box-shadow: 0 0 15px rgba(255,65,65,0.3);
-    }
+
     
     /* Missing animations */
     @keyframes shimmer {
@@ -662,41 +554,7 @@
       50% { transform: translateY(-10px); }
     }
 
-    /* Message styling */
-    .message {
-      padding: 16px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      text-align: center;
-      font-weight: 500;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      animation: slideInDown 0.3s ease-out;
-    }
-    
-    .message.success {
-      background: linear-gradient(135deg, #1e293b, #334155);
-      color: #10b981;
-      border: 2px solid #10b981;
-      box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
-    }
-    
-    .message.error {
-      background: linear-gradient(135deg, #1e293b, #334155);
-      color: #ef4444;
-      border: 2px solid #ef4444;
-      box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
-    }
-    
-    @keyframes slideInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+
   </style>
 {% endblock %}
 
@@ -782,34 +640,7 @@
         </div>
       </div>
 
-      <!-- Contact Form -->
-      <div class="contact-form">
-        <h2 class="section-title">Send a Message</h2>
-        <form id="contactForm">
-          {% csrf_token %}
-          <div class="form-group">
-            <label for="name" class="form-label">Full Name *</label>
-            <input type="text" id="name" name="name" class="form-input" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="email" class="form-label">Email Address *</label>
-            <input type="email" id="email" name="email" class="form-input" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="subject" class="form-label">Subject</label>
-            <input type="text" id="subject" name="subject" class="form-input" placeholder="e.g., Project Discussion, Job Opportunity">
-          </div>
-          
-          <div class="form-group">
-            <label for="message" class="form-label">Message *</label>
-            <textarea id="message" name="message" class="form-input form-textarea" required placeholder="Tell me about your project, opportunity, or just say hello!"></textarea>
-          </div>
-          
-          <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-      </div>
+
     </div>
 
     <!-- Additional Information -->
@@ -824,84 +655,5 @@
     </div>
   </div>
 
-  <script>
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      
-      // Get form data
-      const formData = new FormData(this);
-      const name = formData.get('name');
-      const email = formData.get('email');
-      const subject = formData.get('subject');
-      const message = formData.get('message');
-      
-      // Show loading state
-      const submitBtn = this.querySelector('.submit-btn');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Sending...';
-      submitBtn.disabled = true;
-      
-      try {
-        // Send data to backend
-        const response = await fetch('{% url "contact" %}', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-          },
-          body: JSON.stringify({
-            name: name,
-            email: email,
-            subject: subject,
-            message: message
-          })
-        });
-        
-        const result = await response.json();
-        
-        if (result.success) {
-          // Show success message
-          showMessage(result.message, 'success');
-          
-          // Reset form
-          this.reset();
-          
-          // Also open email client as backup
-          const mailtoLink = `mailto:pruthvirajgshitole@gmail.com?subject=${encodeURIComponent(subject || 'Portfolio Contact: ' + name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-          window.open(mailtoLink);
-          
-        } else {
-          showMessage(result.message, 'error');
-        }
-        
-      } catch (error) {
-        console.error('Error:', error);
-        showMessage('An error occurred. Please try again.', 'error');
-      } finally {
-        // Reset button state
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-      }
-    });
-    
-    function showMessage(message, type) {
-      // Remove existing messages
-      const existingMsg = document.querySelector('.message');
-      if (existingMsg) existingMsg.remove();
-      
-      // Create new message
-      const msgDiv = document.createElement('div');
-      msgDiv.className = `message ${type}`;
-      msgDiv.textContent = message;
-      
-      // Insert at top of form
-      const form = document.getElementById('contactForm');
-      form.insertBefore(msgDiv, form.firstChild);
-      
-      // Remove after 5 seconds
-      setTimeout(() => {
-        msgDiv.remove();
-      }, 5000);
-    }
-  </script>
+
 {% endblock %}
