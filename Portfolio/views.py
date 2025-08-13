@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import JsonResponse
+from .models import Contact
 import json
 
 def index(request):
@@ -16,23 +17,34 @@ def contact(request):
             message = data.get('message')
             
             if name and email and message:
-                # For now, just log the data (you can see it in Django console)
-                print(f"=== NEW CONTACT FORM SUBMISSION ===")
+                # Save the contact form data to database
+                contact = Contact.objects.create(
+                    name=name,
+                    email=email,
+                    subject=subject,
+                    message=message
+                )
+                
+                # Also log for debugging
+                print(f"=== NEW CONTACT FORM SUBMISSION SAVED ===")
+                print(f"ID: {contact.id}")
                 print(f"Name: {name}")
                 print(f"Email: {email}")
                 print(f"Subject: {subject}")
                 print(f"Message: {message}")
-                print(f"Timestamp: {__import__('datetime').datetime.now()}")
-                print(f"=====================================")
+                print(f"Timestamp: {contact.created_at}")
+                print(f"=========================================")
                 
                 return JsonResponse({
                     'success': True,
                     'message': 'Thank you! Your message has been received. I\'ll get back to you soon!',
                     'data': {
+                        'id': contact.id,
                         'name': name,
                         'email': email,
                         'subject': subject,
-                        'message': message
+                        'message': message,
+                        'timestamp': contact.created_at.isoformat()
                     }
                 })
             else:

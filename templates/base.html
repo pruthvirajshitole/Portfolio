@@ -136,60 +136,27 @@
       position: relative;
     }
     
-    .code-logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Courier New', monospace;
-      font-weight: bold;
-      font-size: 1.8rem;
-      color: #10b981;
-      text-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
-      position: relative;
-    }
-    
-    .code-symbol {
-      color: #34d399;
-      animation: codeGlow 3s ease-in-out infinite;
-      text-shadow: 0 0 10px rgba(52, 211, 153, 0.6);
-    }
-    
-    .code-text {
-      color: #ffffff;
-      letter-spacing: 2px;
-      animation: textPulse 2s ease-in-out infinite;
-      position: relative;
-    }
-    
-    .code-text::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, #10b981, #34d399, #10b981);
-      animation: underlineGlow 2s ease-in-out infinite;
-    }
-    
-    .typing-cursor {
-      width: 3px;
-      height: 25px;
-      background: #10b981;
-      animation: blink 1s infinite;
-      box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
-    }
-    
-    @keyframes codeGlow {
-      0%, 100% { 
-        text-shadow: 0 0 10px rgba(52, 211, 153, 0.6);
-        transform: scale(1);
-      }
-      50% { 
-        text-shadow: 0 0 20px rgba(52, 211, 153, 0.8), 0 0 30px rgba(52, 211, 153, 0.4);
-        transform: scale(1.05);
-      }
-    }
+         .header-video {
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       z-index: -1;
+       overflow: hidden;
+     }
+     
+     .header-video video {
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+       opacity: 0.3;
+     }
+     
+     .header-content {
+       position: relative;
+       z-index: 2;
+     }
     
     @keyframes textPulse {
       0%, 100% { 
@@ -276,12 +243,8 @@
         padding: 0 20px;
       }
       
-      .code-logo {
-        font-size: 1.5rem;
-      }
-      
-      .typing-cursor {
-        height: 20px;
+      .header-video video {
+        opacity: 0.25;
       }
       
       nav {
@@ -535,13 +498,11 @@
   <header>
     <div class="container">
       <div class="header-content">
-        <div class="logo-section">
-          <div class="code-logo">
-            <span class="code-symbol">&lt;</span>
-            <span class="code-text">DEV</span>
-            <span class="code-symbol">/&gt;</span>
-          </div>
-          <div class="typing-cursor"></div>
+        <div class="header-video">
+          <video autoplay muted loop playsinline>
+            <source src="{% static 'vd.webm' %}" type="video/webm">
+            Your browser does not support the video tag.
+          </video>
         </div>
         <nav>
           <a href="{% url 'index' %}" class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">Home</a>
@@ -570,6 +531,8 @@
       </div>
     </div>
   </footer>
+
+  
 </body>
 </html>
 
