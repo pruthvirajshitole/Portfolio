@@ -291,55 +291,6 @@
       text-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
     }
     
-    .resume-section {
-      background: rgba(255,255,255,0.02);
-      backdrop-filter: blur(20px);
-      border-radius: clamp(12px, 3vw, 16px);
-      padding: clamp(25px, 5vw, 35px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-      border: 1px solid rgba(255,255,255,0.1);
-      text-align: center;
-      margin-bottom: clamp(30px, 6vw, 50px);
-      animation: fadeInUp 1.2s ease-out 1s both;
-    }
-    
-    .resume-button {
-      display: inline-flex;
-      align-items: center;
-      gap: clamp(8px, 2vw, 12px);
-      background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-      color: #ffffff;
-      border: none;
-      padding: clamp(14px, 3vw, 18px) clamp(24px, 6vw, 32px);
-      border-radius: clamp(8px, 2vw, 12px);
-      font-size: clamp(1rem, 2.5vw, 1.1rem);
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      text-decoration: none;
-      letter-spacing: 0.02em;
-      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
-      min-width: clamp(180px, 45vw, 220px);
-      justify-content: center;
-    }
-    
-    .resume-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
-      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-    }
-    
-    .resume-button:active {
-      transform: translateY(0);
-    }
-    
-    .resume-icon {
-      width: clamp(20px, 4vw, 24px);
-      height: clamp(20px, 4vw, 24px);
-      filter: brightness(0) invert(1);
-    }
-    
     .social-section {
       background: rgba(255,255,255,0.02);
       backdrop-filter: blur(20px);
@@ -466,7 +417,7 @@
         padding: 0 clamp(15px, 4vw, 30px);
       }
       
-      .contact-section, .resume-section, .social-section {
+      .contact-section, .social-section {
         padding: clamp(20px, 5vw, 30px);
       }
     }
@@ -506,7 +457,7 @@
         gap: clamp(12px, 3vw, 15px);
       }
       
-      .contact-section, .resume-section, .social-section { 
+      .contact-section, .social-section { 
         padding: clamp(20px, 5vw, 25px); 
         margin-bottom: clamp(20px, 5vw, 30px);
       }
@@ -523,7 +474,7 @@
         padding: 0 clamp(12px, 3vw, 20px);
       }
       
-      .contact-section, .resume-section, .social-section { 
+      .contact-section, .social-section { 
         padding: clamp(15px, 4vw, 20px); 
         margin-bottom: clamp(15px, 4vw, 25px);
       }
@@ -555,7 +506,7 @@
         font-size: clamp(1rem, 2.5vw, 1.2rem);
       }
       
-      .contact-section, .resume-section, .social-section {
+      .contact-section, .social-section {
         padding: clamp(15px, 4vw, 25px);
         margin-bottom: clamp(15px, 4vw, 25px);
       }
@@ -583,7 +534,6 @@
       
       .hero-content,
       .contact-section,
-      .resume-section,
       .social-section {
         animation: none;
         opacity: 1;
@@ -653,31 +603,6 @@
       </div>
     </div>
 
-    <div class="resume-section">
-      <h2 class="section-title">My Resume</h2>
-      <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px; font-size: clamp(0.9rem, 2.2vw, 1rem);">
-        Click the button below to download my resume
-      </p>
-      
-      <!-- Primary download button -->
-      <a href="{% static 'resume/My_resume.pdf' %}" download="Pruthviraj_Shitole_Resume.pdf" class="resume-button" id="resumeDownload">
-        <svg class="resume-icon" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
-        </svg>
-        Download Resume
-      </a>
-      
-      <!-- Alternative download options -->
-      <div style="text-align: center; margin-top: 20px; display: flex; flex-direction: column; gap: 10px; align-items: center;">
-        <a href="{% static 'resume/My_resume.pdf' %}" target="_blank" style="color: #3b82f6; text-decoration: none; font-size: clamp(0.85rem, 2vw, 0.95rem); opacity: 0.8; padding: 8px 16px; border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 6px; transition: all 0.3s ease;">
-          📄 Open in Browser
-        </a>
-        <a href="{% static 'resume/My_resume.pdf' %}" style="color: #f59e0b; text-decoration: none; font-size: clamp(0.85rem, 2vw, 0.95rem); opacity: 0.8; padding: 8px 16px; border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 6px; transition: all 0.3s ease;">
-          💾 Right-click → Save As
-        </a>
-      </div>
-    </div>
-
     <div class="social-section">
       <h2 class="section-title">Connect With Me</h2>
       <div class="social-grid">
@@ -703,65 +628,10 @@
   </div>
   
   <script>
-    // Enhanced resume download handling for production deployment
+    // Contact page functionality
     document.addEventListener('DOMContentLoaded', function() {
-      const resumeDownload = document.getElementById('resumeDownload');
-      
-      if (resumeDownload) {
-        resumeDownload.addEventListener('click', function(e) {
-          // Try to detect if download is working
-          const link = document.createElement('a');
-          link.href = this.href;
-          link.download = this.download;
-          link.style.display = 'none';
-          
-          document.body.appendChild(link);
-          
-          try {
-            link.click();
-            document.body.removeChild(link);
-            
-            // Show success message
-            showMessage('Resume download started!', 'success');
-          } catch (error) {
-            console.log('Download failed, opening in new tab');
-            // Fallback: open in new tab
-            window.open(this.href, '_blank');
-            showMessage('Resume opened in new tab. Right-click and "Save As" to download.', 'info');
-          }
-        });
-      }
-      
-      function showMessage(message, type) {
-        // Create temporary message
-        const msgDiv = document.createElement('div');
-        msgDiv.textContent = message;
-        msgDiv.style.cssText = `
-          position: fixed;
-          top: 20px;
-          right: 20px;
-          background: ${type === 'success' ? '#10b981' : '#3b82f6'};
-          color: white;
-          padding: 12px 20px;
-          border-radius: 8px;
-          font-size: 14px;
-          z-index: 1000;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-          animation: slideInRight 0.3s ease-out;
-        `;
-        
-        document.body.appendChild(msgDiv);
-        
-        // Remove after 3 seconds
-        setTimeout(() => {
-          msgDiv.style.animation = 'slideOutRight 0.3s ease-out';
-          setTimeout(() => {
-            if (msgDiv.parentNode) {
-              document.body.removeChild(msgDiv);
-            }
-          }, 300);
-        }, 3000);
-      }
+      // Add any future contact page functionality here
+      console.log('Contact page loaded successfully');
     });
   </script>
 {% endblock %}
